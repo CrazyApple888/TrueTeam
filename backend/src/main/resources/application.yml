@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: info
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: changeit
+    password: changeit
+    url: changeit
