@@ -36,6 +36,7 @@ fun configureAppModule(project: Project) {
         setBuildTypes()
         setJavaVersion()
         setExcludes()
+        setViewBinding()
     }
 }
 
@@ -54,6 +55,7 @@ fun configureAndroidLibraryModule(project: Project) {
         setBuildTypes()
         setJavaVersion()
         setExcludes()
+        setViewBinding()
     }
 }
 
@@ -87,4 +89,8 @@ fun BaseExtension.setExcludes() {
     packagingOptions {
         resources.excludes.add("META-INF/*.kotlin_module")
     }
+}
+
+fun BaseExtension.setViewBinding() {
+    buildFeatures.viewBinding = true
 }

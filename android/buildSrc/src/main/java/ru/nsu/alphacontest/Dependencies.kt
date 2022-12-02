@@ -1,7 +1,7 @@
 object Dependencies {
 
     object Versions {
-        const val KOTLIN = "1.6.2"
+        const val KOTLIN = "1.6.20"
         const val GRADLE = "7.1.2"
         const val LIFECYCLE = "2.4.0"
         const val MATERIAL = "1.5.0"
@@ -11,7 +11,7 @@ object Dependencies {
         const val NAVIGATION = "2.4.2"
         const val GSON = "2.9.1"
         const val KOIN = "3.3.0"
-        const val COROUTINES = KOTLIN
+        const val COROUTINES = "1.6.0"
     }
 
     const val GRADLE = "com.android.tools.build:gradle:${Versions.GRADLE}"
@@ -20,7 +20,7 @@ object Dependencies {
     const val APP_COMPAT = "androidx.appcompat:appcompat:${Versions.APP_COMPAT}"
 
     object Kotlin {
-        const val KOTLIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN}"
+        const val KOTLIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.0"
         const val KOTLIN_REFLECT = "org.jetbrains.kotlin:kotlin-reflect:${Versions.KOTLIN}"
         const val KOTLIN_STANDARD_LIBRARY =
             "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.KOTLIN}"
