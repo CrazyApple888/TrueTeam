@@ -10,6 +10,7 @@ class AlphaApplication : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@AlphaApplication)
+            koin.loadModules(listOf(appModule))
         }
     }
 }

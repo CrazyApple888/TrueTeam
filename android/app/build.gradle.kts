@@ -3,12 +3,6 @@ plugins {
     id(Plugins.KOTLIN_ANDROID)
 }
 
-/*android {
-    buildFeatures {
-        viewBinding = true
-    }
-}*/
-
 dependencies {
     implementation(Dependencies.Kotlin.KOTLIN_STANDARD_LIBRARY)
     implementation(Dependencies.Coroutines.COROUTINES_ANDROID)
@@ -18,4 +12,8 @@ dependencies {
     implementation(Dependencies.APP_COMPAT)
     implementation(Dependencies.MATERIAL)
     implementation(Dependencies.VIEW_BINDING_DELEGATE)
+    implementation(Dependencies.Navigation.NAVIGATION_FRAGMENT)
+    implementation(Dependencies.Navigation.NAVIGATION_UI)
+
+    implementation(project(Modules.BASE))
 }
