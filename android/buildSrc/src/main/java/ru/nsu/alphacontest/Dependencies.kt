@@ -56,4 +56,6 @@ object Dependencies {
     object Gson {
         const val GSON = "com.google.code.gson:gson:${Versions.GSON}"
     }
+
+    const val VIEW_BINDING_DELEGATE = "com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.6"
 }
