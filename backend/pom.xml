@@ -28,6 +28,7 @@
         <kotlin-logging-jvm.version>2.1.23</kotlin-logging-jvm.version>
 
         <maven-jar-plugin.version>2.6</maven-jar-plugin.version>
+        <java-jwt.version>4.1.0</java-jwt.version>
     </properties>
 
     <dependencies>
@@ -70,6 +71,11 @@
             <groupId>io.github.microutils</groupId>
             <artifactId>kotlin-logging-jvm</artifactId>
             <version>${kotlin-logging-jvm.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>${java-jwt.version}</version>
         </dependency>
     </dependencies>
 
