@@ -8,6 +8,6 @@ logging:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: admin
-    password: Ti172ne34pod
-    url: jdbc:postgresql://localhost:5432/alfa
+    username: changeit
+    password: changeit
+    url: changeit
