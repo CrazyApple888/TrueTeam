@@ -26,27 +26,27 @@ class JwtSecurityFilter(
         response: HttpServletResponse,
         filterChain: FilterChain
     ) {
-        val accessTokenHeader =
-            request.getHeader("Authorization") ?: throw AuthException("Отсутствует обязательный header Authorization")
-
         try {
+            val accessTokenHeader =
+                request.getHeader("Authorization")
+                    ?: throw AuthException("Отсутствует обязательный header Authorization")
             verifyJWT(accessTokenHeader)
+
+            val userDetails: UserDetails = User(id = JwtUtils.getUserIdFromToken(accessTokenHeader))
+
+            val authentication = UsernamePasswordAuthenticationToken(
+                userDetails,
+                JwtUtils.getUserIdFromToken(accessTokenHeader),
+                setOf()
+            )
+
+            authentication.details = WebAuthenticationDetailsSource().buildDetails(request)
+
+            SecurityContextHolder.getContext().authentication = authentication
+            filterChain.doFilter(request, response)
         } catch (exception: AuthException) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, exception.message)
         }
-
-        val userDetails: UserDetails = User(id = JwtUtils.getUserIdFromToken(accessTokenHeader))
-
-        val authentication = UsernamePasswordAuthenticationToken(
-            userDetails,
-            JwtUtils.getUserIdFromToken(accessTokenHeader),
-            setOf()
-        )
-
-        authentication.details = WebAuthenticationDetailsSource().buildDetails(request)
-
-        SecurityContextHolder.getContext().authentication = authentication
-        filterChain.doFilter(request, response)
     }
 
     @Throws(AuthException::class)

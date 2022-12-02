@@ -20,12 +20,12 @@ class AdviceController {
     }
 
     @ExceptionHandler(*[PasswordException::class, UserNotFoundException::class])
-    fun handlePasswordException(exception: Exception): ResponseEntity<ErrorMessage> {
+    fun handleSimpleBadRequestException(exception: Exception): ResponseEntity<ErrorMessage> {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorMessage(exception.message))
     }
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
-    fun registrationExceptionHandler(exception: MethodArgumentNotValidException): ResponseEntity<ErrorMessage> {
+    fun handleMethodArgumentNotValidException(exception: MethodArgumentNotValidException): ResponseEntity<ErrorMessage> {
         val fieldErrors: List<FieldError> = exception.fieldErrors
 
         val errorMessage = fieldErrors.stream()
