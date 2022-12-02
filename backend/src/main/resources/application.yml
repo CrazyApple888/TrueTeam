@@ -1,13 +1,13 @@
 server:
-  port: 8080
+  port: 8081
 
 logging:
   level:
-    root: info
+    root: debug
 
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: changeit
-    password: changeit
-    url: changeit
+    username: admin
+    password: Ti172ne34pod
+    url: jdbc:postgresql://localhost:5432/alfa
