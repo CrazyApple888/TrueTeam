@@ -1,6 +1,6 @@
 object Settings {
 
-    const val COMPILE_SDK_VERSION = 33
+    const val COMPILE_SDK_VERSION = 32
     const val BUILD_TOOLS_VERSION = "30.0.3"
 
     const val APPLICATION_ID = "ru.nsu.alphacontest"
