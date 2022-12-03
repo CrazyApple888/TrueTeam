@@ -1,7 +1,7 @@
 # TrueTeam
 
 # Как поднять backend sevice?
-## В докере:
+## В терминале:
 1. docker run --name postgres -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -p 5432:5432  -d postgres
 2. docker run --name pgadmin -e PGADMIN_DEFAULT_PASSWORD=admin -e PGADMIN_DEFAULT_EMAIL=admin@mail.ru -p 5050:80 -d dpage/pgadmin4
 3. docker ps -a
@@ -29,10 +29,19 @@
 
 8. Правой кнопкой по созданному слева trueteam -> create -> database
 9. Название - trueteam -> save
+10. Правой кнопкой по созданной БД trueteam
+11. Query tool
+12. Применяем скрипт создания БД из /backend/src/main/resources/database/create.sql
+
+    По умолчанию создается 2 пользователя
+    
+    Логин: a@bk.ru и b@bk.ru
+    
+    Пароль: 1!Qwertyu
 
 ## В приложении:
 
-10. В application.yml меняем
+13. В application.yml меняем
 
     username: admin
     
@@ -40,9 +49,9 @@
     
     url: jdbc:postgresql://localhost:5432/trueteam
     
-11. Ставим ключ для api 2 gis в geo-api.key
+14. Ставим ключ для api 2 gis в geo-api.key
 
 ## В idea:
 
-11. mvn compile (Справа maven -> Lifecycle -> compile)
-12. Заходим в src/main/kotlin/Application.kt и зеленую стрелочку
+15. mvn compile (Справа maven -> Lifecycle -> compile)
+16. Заходим в src/main/kotlin/Application.kt и зеленую стрелочку
