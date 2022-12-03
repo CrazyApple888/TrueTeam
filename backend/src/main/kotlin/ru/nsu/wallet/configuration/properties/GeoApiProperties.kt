@@ -7,5 +7,6 @@ import org.springframework.context.annotation.Configuration
 @ConfigurationProperties("geo-api")
 data class GeoApiProperties(
     var url: String = "",
-    var key: String = ""
+    var key: String = "",
+    var mockResponsePath: String = ""
 )

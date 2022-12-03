@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service
 import ru.nsu.wallet.entity.Card
 import ru.nsu.wallet.exception.GeoApiException
 import ru.nsu.wallet.service.geo.gis.GeoApiService
-import ru.nsu.wallet.utils.TitleFormatter
 import ru.nsu.wallet.utils.TitleFormatter.formatName
 
 @Service
