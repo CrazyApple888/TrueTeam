@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service
 import ru.nsu.wallet.entity.Card
 import ru.nsu.wallet.exception.GeoApiException
 import ru.nsu.wallet.service.geo.gis.GeoApiService
+import ru.nsu.wallet.utils.TitleFormatter
+import ru.nsu.wallet.utils.TitleFormatter.formatName
 
 @Service
 class OrderCardService(private val geoApiService: GeoApiService) {
@@ -18,8 +20,10 @@ class OrderCardService(private val geoApiService: GeoApiService) {
         /*todo позор вонючий, переписать по нормальному*/
         val result = ArrayList<Card>()
         for (nearestCompany in nearestCompanyList.result.items) {
+            val formattedName = formatName(nearestCompany.name)
+
             for (card in cards)
-                if (nearestCompany.name.contains(card.name, true)) {
+                if (formattedName.contains(formatName(card.name), true)) {
                     result.add(card)
                 }
         }
