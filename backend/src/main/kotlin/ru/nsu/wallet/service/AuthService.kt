@@ -8,11 +8,11 @@ import ru.nsu.wallet.dto.authentication.JwtPair
 import ru.nsu.wallet.entity.User
 import ru.nsu.wallet.exception.AuthException
 import ru.nsu.wallet.utils.JwtUtils
-import ru.nsu.wallet.utils.PasswordUtils
 
 @Service
 class AuthService(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val passwordService: PasswordService
 ) {
 
     companion object {
@@ -49,7 +49,7 @@ class AuthService(
     private fun getCheckedUserByLogin(loginRequest: LoginRequest): User {
         val user = userRepository.getByEmail(loginRequest.login) ?: throw UserNotFoundException(LOGIN_AUTH_EXCEPTION_MESSAGE)
 
-        PasswordUtils.checkEnteredPasswordMatchesUserPassword(
+        passwordService.checkEnteredPasswordMatchesUserPassword(
             loginRequest.password,
             user.password,
             user.salt,

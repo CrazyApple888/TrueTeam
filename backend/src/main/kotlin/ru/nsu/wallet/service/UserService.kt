@@ -8,13 +8,12 @@ import ru.nsu.wallet.dto.authentication.JwtPair
 import ru.nsu.wallet.dto.authentication.LoginRequest
 import ru.nsu.wallet.entity.User
 import ru.nsu.wallet.repository.UserRepository
-import ru.nsu.wallet.utils.PasswordGenerationUtils
-import ru.nsu.wallet.utils.PasswordUtils
 
 @Service
 class UserService(
     private val userRepository: UserRepository,
-    private val authService: AuthService
+    private val authService: AuthService,
+    private val passwordService: PasswordService
 ) {
 
     fun getUserById(userId: Int) : User {
@@ -22,13 +21,13 @@ class UserService(
     }
 
     fun registerUser(registrationRequest: RegistrationRequest): JwtPair {
-        PasswordUtils.checkPasswordConstraints(registrationRequest.password)
+        passwordService.checkPasswordConstraints(registrationRequest.password)
 
         userRepository.getByEmail(registrationRequest.email)
             ?.let { throw RegistrationException("Пользователь с логином ${registrationRequest.email} уже существует") }
 
-        val salt = PasswordGenerationUtils.generateSalt()
-        val hashedPassword = PasswordGenerationUtils.hashPassword(registrationRequest.password, salt)
+        val salt = passwordService.generateSalt()
+        val hashedPassword = passwordService.hashPassword(registrationRequest.password, salt)
 
         val user = User(
             email = registrationRequest.email,

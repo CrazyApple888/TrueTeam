@@ -10,7 +10,7 @@ import ru.nsu.wallet.exception.AuthException
 import java.util.*
 
 object JwtUtils {
-    private const val JWT_AUTH_TOKEN_VALIDITY: Long = 600000_0000 // 10 минут
+    private const val JWT_AUTH_TOKEN_VALIDITY: Long = 600000 // 10 минут
     private const val JWT_REFRESH_TOKEN_VALIDITY: Long = 604800000 // 1 неделя
     private const val SECRET = "fASF ISBIBubfASFub8USAfb8ASUFBA*S"
     private val algorithm = Algorithm.HMAC256(SECRET)
