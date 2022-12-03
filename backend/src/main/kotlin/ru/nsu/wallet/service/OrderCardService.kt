@@ -9,15 +9,25 @@ import ru.nsu.wallet.service.geo.gis.GeoApiService
 class OrderCardService(private val geoApiService: GeoApiService) {
 
     @Throws(GeoApiException::class)
-    fun orderByDistance(lon: Double, lat: Double, type: String, cards: List<Card>): List<Card> {
-//        val result = ArrayList<Card>()
-
-
-//        val nearestCompanyList = geoApiService.getNearestCompanies(lon, lat, type)
+    fun orderByDistance(lon: Double, lat: Double, type: String, cards: MutableList<Card>): List<Card> {
+        val nearestCompanyList = geoApiService.getNearestCompanies(lon, lat, type)
 
         /*todo тут возможно нужна сортировка nearestCompanyList по координатам,
             но вроде api 2gis отдает в отсортированном виде*/
 
-        return cards
+        /*todo позор вонючий, переписать по нормальному*/
+        val result = ArrayList<Card>()
+        for (nearestCompany in nearestCompanyList.result.items) {
+            for (card in cards)
+                if (nearestCompany.name.contains(card.name, true)) {
+                    result.add(card)
+                }
+        }
+
+        cards.removeAll(result)
+        cards.sortBy { card -> card.name }
+        result.addAll(cards)
+
+        return result
     }
 }

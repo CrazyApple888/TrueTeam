@@ -1,15 +1,19 @@
 package ru.nsu.wallet.service.geo.gis
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestClientException
 import org.springframework.web.client.RestTemplate
 import ru.nsu.wallet.configuration.properties.GeoApiProperties
 import ru.nsu.wallet.exception.GeoApiException
+import ru.nsu.wallet.service.geo.gis.answer.NearestCompanyAnswer
+import java.io.File
 
 @Service
 class GisGeoApiService(
     private val restTemplate: RestTemplate,
-    private val geoApiProperties: GeoApiProperties
+    private val geoApiProperties: GeoApiProperties,
+    private val objectMapper: ObjectMapper
 ) : GeoApiService {
 
     @Throws(GeoApiException::class)
@@ -36,6 +40,11 @@ class GisGeoApiService(
                         "fields={fields}",
                 NearestCompanyAnswer::class.java, params
             ) ?: throw GeoApiException("Невалидный ответ от geo api")
+
+//            val result = objectMapper.readValue(
+//                File("/Users/stanislavutockin/Documents/TrueTeam/backend/src/main/resources/api/rawApiMockResponse").readText(),
+//                NearestCompanyAnswer::class.java
+//            )
 
             return result
         } catch (exception: RestClientException) {

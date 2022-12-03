@@ -16,9 +16,9 @@ class CardService(
 ) {
 
     fun getCardListOrderedByType(lon: Double, lat: Double, type: String, userId: Int): List<Card> {
-        val unorderedCards = cardRepository.findAllByTypeAndOwnerId(type, userId)
+        val unorderedCards = mutableListOf(*cardRepository.findAllByTypeAndOwnerId(type, userId).toTypedArray())
 
-        val orderedCards = orderCardService.orderByDistance(lon, lat, type, unorderedCards)
+        val orderedCards = orderCardService.orderByDistance(lon, lat, formatType(type), unorderedCards)
 
         return orderedCards
     }
@@ -35,9 +35,12 @@ class CardService(
         cardRepository.deleteByNumberAndOwnerId(removeCardRequest.number, userId)
     }
 
+    private fun formatType(type: String) =
+        type.lowercase().trim()
+
     private fun createNewCard(addCardRequest: AddCardRequest, user: User) = Card(
         owner = user,
-        type = addCardRequest.type,
+        type = formatType(addCardRequest.type),
         number = addCardRequest.number,
         name = addCardRequest.name,
     )
