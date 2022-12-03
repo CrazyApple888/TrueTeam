@@ -6,6 +6,7 @@ import org.springframework.validation.FieldError
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
+import ru.nsu.fevent.exception.RegistrationException
 import ru.nsu.fevent.exception.UserNotFoundException
 import ru.nsu.wallet.dto.ErrorMessage
 import ru.nsu.wallet.exception.AuthException
@@ -19,7 +20,11 @@ class AdviceController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build()
     }
 
-    @ExceptionHandler(*[PasswordException::class, UserNotFoundException::class])
+    @ExceptionHandler(
+        *[PasswordException::class,
+            UserNotFoundException::class,
+            RegistrationException::class]
+    )
     fun handleSimpleBadRequestException(exception: Exception): ResponseEntity<ErrorMessage> {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorMessage(exception.message))
     }
