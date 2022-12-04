@@ -36,7 +36,6 @@ fun configureAppModule(project: Project) {
         setBuildTypes()
         setJavaVersion()
         setExcludes()
-        setViewBinding()
     }
 }
 
