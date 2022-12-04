@@ -8,5 +8,6 @@ import org.springframework.context.annotation.Configuration
 data class GeoApiProperties(
     var url: String = "",
     var key: String = "",
-    var mockResponsePath: String = ""
+    var mockResponsePath: String = "",
+    var enableMockRequest: Boolean = true
 )

@@ -35,23 +35,26 @@ class GisGeoApiService(
 
         try {
             val start = System.currentTimeMillis()
-//            val result = restTemplate.getForObject(
-//                "${geoApiProperties.url}/3.0/items?" +
-//                        "key={key}&" +
-//                        "type={type}&" +
-//                        "q={q}&" +
-//                        "sort={sort}&" +
-//                        "sort_point={sort_point}&" +
-//                        "locale={locale}&" +
-//                        "fields={fields}",
-//                NearestCompanyAnswer::class.java, params
-//            ) ?: throw GeoApiException("Невалидный ответ от geo api")
+            val result: NearestCompanyAnswer
 
-            val result = objectMapper.readValue(
-                File(geoApiProperties.mockResponsePath).readText(),
-                NearestCompanyAnswer::class.java
-            )
-
+            if (geoApiProperties.enableMockRequest) {
+                result = objectMapper.readValue(
+                    File(geoApiProperties.mockResponsePath).readText(),
+                    NearestCompanyAnswer::class.java
+                )
+            } else {
+                result = restTemplate.getForObject(
+                    "${geoApiProperties.url}/3.0/items?" +
+                            "key={key}&" +
+                            "type={type}&" +
+                            "q={q}&" +
+                            "sort={sort}&" +
+                            "sort_point={sort_point}&" +
+                            "locale={locale}&" +
+                            "fields={fields}",
+                    NearestCompanyAnswer::class.java, params
+                ) ?: throw GeoApiException("Невалидный ответ от geo api")
+            }
 
             val end = System.currentTimeMillis()
             LOGGER.info { "Remote api request time: ${end - start} ms" }
