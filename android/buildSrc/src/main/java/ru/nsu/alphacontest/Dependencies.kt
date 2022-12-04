@@ -9,9 +9,11 @@ object Dependencies {
         const val APP_COMPAT = "1.4.1"
         const val ROOM = "2.4.1"
         const val NAVIGATION = "2.4.2"
-        const val GSON = "2.9.1"
+        const val GSON = "2.5.0"
         const val KOIN = "3.3.0"
         const val COROUTINES = "1.6.0"
+        const val RETROFIT = "2.9.0"
+        const val LOGGING_INTERCEPTOR = "4.9.3"
     }
 
     const val GRADLE = "com.android.tools.build:gradle:${Versions.GRADLE}"
@@ -54,8 +56,13 @@ object Dependencies {
     }
 
     object Gson {
-        const val GSON = "com.google.code.gson:gson:${Versions.GSON}"
+        const val GSON = "com.squareup.retrofit2:converter-gson:${Versions.GSON}"
     }
 
     const val VIEW_BINDING_DELEGATE = "com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.6"
+
+    object NETWORK {
+        const val RETROFIT = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
+        const val LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${Versions.LOGGING_INTERCEPTOR}"
+    }
 }
