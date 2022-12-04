@@ -1,6 +1,7 @@
 package ru.nsu.wallet.controller.filter
 
 import com.auth0.jwt.exceptions.JWTVerificationException
+import mu.KotlinLogging
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
@@ -16,6 +17,10 @@ import javax.servlet.http.HttpServletResponse
 class JwtSecurityFilter(
     private val excludePath: List<String>
 ) : OncePerRequestFilter() {
+
+    companion object {
+        private val LOGGER = KotlinLogging.logger {}
+    }
 
     /*todo сделать PathMatcher*/
     override fun shouldNotFilter(request: HttpServletRequest) =
@@ -45,6 +50,7 @@ class JwtSecurityFilter(
             SecurityContextHolder.getContext().authentication = authentication
             filterChain.doFilter(request, response)
         } catch (exception: AuthException) {
+            LOGGER.info { exception }
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, exception.message)
         }
     }

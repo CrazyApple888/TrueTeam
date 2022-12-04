@@ -29,7 +29,7 @@ object JwtUtils {
         return JwtPair(authToken, refreshToken)
     }
 
-    fun parseToken(token: String?): DecodedJWT {
+    private fun parseToken(token: String?): DecodedJWT {
         return JWT().decodeJwt(token)
     }
 
