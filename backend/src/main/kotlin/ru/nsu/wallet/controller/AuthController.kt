@@ -27,7 +27,4 @@ class AuthController(private val authService: AuthService) {
 
         return ResponseEntity.ok(jwtPair)
     }
-
-    @PostMapping("/secure")
-    fun secure(): ResponseEntity<String> = ResponseEntity.ok("SUCCESS")
 }
