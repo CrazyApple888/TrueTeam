@@ -1,5 +1,7 @@
 package ru.nsu.wallet.controller
 
+import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -17,12 +19,14 @@ import ru.nsu.wallet.service.mapper.CardMapper
 
 @RestController
 @RequestMapping("/card")
+@Tag(name = "Работа со скидочными картами")
 class CardController(
     private val cardService: CardService,
     private val cardMapper: CardMapper
 ) {
 
     @GetMapping("/ordered-list")
+    @ApiResponse(description = "Получить приоритезированный список скидочных карт. Требуется авторизация.")
     fun getCardListByType(
         @RequestParam type: String,
         @RequestParam lon: Double,
@@ -35,12 +39,14 @@ class CardController(
     }
 
     @PostMapping
+    @ApiResponse(description = "Добавить скидочную карту. Требуется авторизация.")
     fun addCard(@RequestBody addCardRequest: AddCardRequest): ResponseEntity<Nothing> {
         cardService.addCard(addCardRequest, getUserIdFromSecurityContext())
         return ResponseEntity.ok().build()
     }
 
     @DeleteMapping
+    @ApiResponse(description = "Удалить скидочную карту. Требуется авторизация.")
     fun removeCard(@RequestBody removeCardRequest: RemoveCardRequest): ResponseEntity<Nothing> {
         cardService.removeCard(removeCardRequest, getUserIdFromSecurityContext())
         return ResponseEntity.ok().build()
