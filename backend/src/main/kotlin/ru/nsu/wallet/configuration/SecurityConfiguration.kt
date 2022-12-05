@@ -20,10 +20,13 @@ import javax.servlet.http.HttpServletResponse
 class SecurityConfiguration {
 
     private val excludeAuthenticationPaths = listOf(
-        "/authenticate/login",
-        "/authenticate/refresh",
+        "/authenticate/**",
         "/user/register",
-        "/error"
+        "/error",
+
+        /* swagger */
+        "/swagger-ui/**",
+        "/v3/api-docs/**"
     )
 
     @Bean
