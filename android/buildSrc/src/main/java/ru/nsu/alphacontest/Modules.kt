@@ -6,4 +6,5 @@ object Modules {
     const val LOGIN = ":feature:login"
     const val NETWORK = ":network"
     const val TOKEN = ":shared:token"
+    const val CARDS = ":feature:main-cards"
 }

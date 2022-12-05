@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import ru.nsu.alphacontest.base.R
+import ru.nsu.alphacontest.design.R
 
 class LoadingDialog : DialogFragment() {
 

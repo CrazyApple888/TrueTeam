@@ -7,5 +7,20 @@
     <fragment
         android:id="@+id/splashFragment"
         android:name="ru.nsu.alphacontest.ui.SplashFragment"
-        android:label="SplashFragment" />
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_cardsFragment"
+            app:destination="@id/cardsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="ru.nsu.alphacontest.login.ui.LoginFragment"
+        android:label="LoginFragment" />
+    <fragment
+        android:id="@+id/cardsFragment"
+        android:name="me.idrew.main_cards.CardsFragment"
+        android:label="CardsFragment" />
 </navigation>

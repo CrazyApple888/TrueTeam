@@ -12,3 +12,5 @@ val TokenModule = module {
         )
     }
 }
+
+val TokenModules = listOf(TokenModule)

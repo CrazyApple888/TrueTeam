@@ -19,4 +19,5 @@ dependencies {
     implementation(Dependencies.Navigation.NAVIGATION_UI)
 
     implementation(project(Modules.BASE))
+    implementation(project(Modules.CARDS))
 }

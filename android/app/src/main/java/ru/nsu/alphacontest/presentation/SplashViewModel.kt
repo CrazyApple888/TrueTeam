@@ -6,8 +6,12 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.nsu.alphacontest.SingleLiveEvent
+import ru.nsu.alphacontest.domain.IsUserLoggedInUseCase
+import ru.nsu.alphacontest.token.data.datasource.TokenDataSource
 
-class SplashViewModel : ViewModel() {
+class SplashViewModel(
+    private val isUserLoggedInUseCase: IsUserLoggedInUseCase
+) : ViewModel() {
 
     private val _isUserAuthorized: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val isUserAuthorized: LiveData<Boolean> = _isUserAuthorized
@@ -18,9 +22,7 @@ class SplashViewModel : ViewModel() {
 
     private fun checkAuthorization() {
         viewModelScope.launch {
-            //todo check tokens and etc
-            delay(2000L)
-            _isUserAuthorized.value = true
+            _isUserAuthorized.value = isUserLoggedInUseCase()
         }
     }
 }
