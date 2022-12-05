@@ -2,6 +2,7 @@ package ru.nsu.wallet.service
 
 import org.springframework.stereotype.Service
 import ru.nsu.wallet.dto.card.AddCardRequest
+import ru.nsu.wallet.entity.OrderedCards
 import ru.nsu.wallet.dto.card.RemoveCardRequest
 import ru.nsu.wallet.entity.Card
 import ru.nsu.wallet.entity.User
@@ -18,12 +19,12 @@ class CardService(
 ) {
 
     @Throws(GeoApiException::class)
-    fun getCardListOrderedByType(lon: Double, lat: Double, type: String, userId: Int): List<Card> {
+    fun getCardListOrderedByType(lon: Double, lat: Double, type: String, userId: Int): OrderedCards {
         val unorderedCards = mutableListOf(*cardRepository.findAllByTypeAndOwnerId(type, userId).toTypedArray())
 
-        val orderedCards = orderCardService.orderByDistance(lon, lat, TitleFormatter.formatType(type), unorderedCards)
+        val orderedCardsResponse = orderCardService.orderByDistance(lon, lat, TitleFormatter.formatType(type), unorderedCards)
 
-        return orderedCards
+        return orderedCardsResponse
     }
 
     fun addCard(addCardRequest: AddCardRequest, userId: Int) {

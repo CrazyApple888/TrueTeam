@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import ru.nsu.wallet.dto.card.AddCardRequest
-import ru.nsu.wallet.dto.card.CardDto
+import ru.nsu.wallet.dto.card.OrderedCardsResponse
 import ru.nsu.wallet.dto.card.RemoveCardRequest
 import ru.nsu.wallet.service.CardService
 import ru.nsu.wallet.service.mapper.CardMapper
@@ -31,9 +31,12 @@ class CardController(
         @RequestParam type: String,
         @RequestParam lon: Double,
         @RequestParam lat: Double
-    ): ResponseEntity<List<CardDto>> {
+    ): ResponseEntity<OrderedCardsResponse> {
         val orderedCards = cardService.getCardListOrderedByType(lon, lat, type, getUserIdFromSecurityContext())
-        val result = orderedCards.map { card -> cardMapper.mapEntityToDto(card) }.toList()
+        val result = OrderedCardsResponse(
+            nearestCards = orderedCards.nearestCards.stream().map { card -> cardMapper.mapEntityToDto(card) }.toList(),
+            anotherCards = orderedCards.anotherCards.stream().map { card -> cardMapper.mapEntityToDto(card) }.toList()
+        )
 
         return ResponseEntity.ok(result)
     }
@@ -52,7 +55,6 @@ class CardController(
         return ResponseEntity.ok().build()
     }
 
-    private fun getUserIdFromSecurityContext(): Int {
-        return SecurityContextHolder.getContext().authentication.credentials as Int
-    }
+    private fun getUserIdFromSecurityContext(): Int =
+        SecurityContextHolder.getContext().authentication.credentials as Int
 }
