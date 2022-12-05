@@ -15,6 +15,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(viewBinding.root)
+//        setContentView(R.layout.activity_main)
+//
+//        supportFragmentManager.commit {
+//            add<LoginFragment>(
+//                containerViewId = R.id.fragment_container
+//            )
+//        }
     }
 
 }

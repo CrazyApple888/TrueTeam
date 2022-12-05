@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AlfaButton.Elevated" parent="Widget.Material3.Button.ElevatedButton">
+        <item name="android:backgroundTint">@drawable/button_selector</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="AlfaButton.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@drawable/button_selector</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <!--  TODO ripple effect фиолетофый, нужно поменять на нарпмер серый-->
+</resources>

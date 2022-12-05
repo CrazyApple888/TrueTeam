@@ -1,18 +1,19 @@
 package ru.nsu.wallet.service
 
 import org.springframework.stereotype.Service
-import ru.nsu.fevent.exception.UserNotFoundException
+import ru.nsu.wallet.exception.UserNotFoundException
 import ru.nsu.wallet.dto.authentication.LoginRequest
 import ru.nsu.wallet.repository.UserRepository
 import ru.nsu.wallet.dto.authentication.JwtPair
+import ru.nsu.wallet.dto.authentication.RefreshTokenRequest
 import ru.nsu.wallet.entity.User
 import ru.nsu.wallet.exception.AuthException
 import ru.nsu.wallet.utils.JwtUtils
-import ru.nsu.wallet.utils.PasswordUtils
 
 @Service
 class AuthService(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val passwordService: PasswordService
 ) {
 
     companion object {
@@ -20,8 +21,8 @@ class AuthService(
         private const val JWT_AUTH_EXCEPTION_MESSAGE = "Невалидный JWT токен"
     }
 
-    fun login(refreshToken: String): JwtPair {
-        val user = getCheckedUserByJwt(refreshToken)
+    fun login(refreshTokenRequest: RefreshTokenRequest): JwtPair {
+        val user = getCheckedUserByJwt(refreshTokenRequest.refreshToken)
         return updateJwtTokens(user)
     }
 
@@ -49,7 +50,7 @@ class AuthService(
     private fun getCheckedUserByLogin(loginRequest: LoginRequest): User {
         val user = userRepository.getByEmail(loginRequest.login) ?: throw UserNotFoundException(LOGIN_AUTH_EXCEPTION_MESSAGE)
 
-        PasswordUtils.checkEnteredPasswordMatchesUserPassword(
+        passwordService.checkEnteredPasswordMatchesUserPassword(
             loginRequest.password,
             user.password,
             user.salt,

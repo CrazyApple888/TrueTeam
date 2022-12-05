@@ -1,5 +1,7 @@
 package ru.nsu.wallet.controller
 
+import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.GetMapping
@@ -16,12 +18,14 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/user")
+@Tag(name = "Работа с пользователями")
 class UserController(
     private val userService: UserService,
     private val userMapper: UserMapper
 ) {
 
     @GetMapping
+    @ApiResponse(description = "Получить информацию об авторизованном пользователе. Требуется авторизация.")
     fun getUser(): ResponseEntity<UserDto> {
         val user = userService.getUserById(getUserIdFromSecurityContext())
         val userDto = userMapper.mapEntityToDto(user)
@@ -30,6 +34,7 @@ class UserController(
     }
 
     @PostMapping
+    @ApiResponse(description = "Создать нового пользователя.")
     fun register(@RequestBody @Valid registrationRequest: RegistrationRequest): ResponseEntity<JwtPair> {
         val jwtPair = userService.registerUser(registrationRequest)
 

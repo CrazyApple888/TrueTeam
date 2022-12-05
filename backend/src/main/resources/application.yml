@@ -1,9 +1,18 @@
 server:
   port: 8080
+  error:
+    include-message: always
+    include-exception: true
 
 logging:
   level:
     root: info
+
+geo-api:
+  url: https://catalog.api.2gis.com
+  key: changeit
+  mock-response-path: "./src/main/resources/api/rawMockResponse"
+  enable-mock-request: true
 
 spring:
   datasource:

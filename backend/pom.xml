@@ -29,6 +29,8 @@
 
         <maven-jar-plugin.version>2.6</maven-jar-plugin.version>
         <java-jwt.version>4.1.0</java-jwt.version>
+        <springdoc-openapi.version>1.6.13</springdoc-openapi.version>
+        <swagger-annotations.version>2.2.6</swagger-annotations.version>
     </properties>
 
     <dependencies>
@@ -77,11 +79,25 @@
             <artifactId>java-jwt</artifactId>
             <version>${java-jwt.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger-annotations.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc-openapi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-kotlin</artifactId>
+            <version>${springdoc-openapi.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
-        <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
 
         <plugins>
             <plugin>

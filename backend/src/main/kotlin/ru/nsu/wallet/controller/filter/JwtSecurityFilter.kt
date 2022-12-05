@@ -1,10 +1,13 @@
 package ru.nsu.wallet.controller.filter
 
 import com.auth0.jwt.exceptions.JWTVerificationException
+import mu.KotlinLogging
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource
+import org.springframework.util.AntPathMatcher
+import org.springframework.util.PathMatcher
 import org.springframework.web.filter.OncePerRequestFilter
 import ru.nsu.wallet.entity.User
 import ru.nsu.wallet.exception.AuthException
@@ -13,13 +16,20 @@ import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-class JwtSecurityFilter(
-    private val excludePath: List<String>
-) : OncePerRequestFilter() {
+class JwtSecurityFilter(private val excludePath: List<String>) : OncePerRequestFilter() {
 
-    /*todo сделать PathMatcher*/
-    override fun shouldNotFilter(request: HttpServletRequest) =
-        excludePath.contains(request.requestURI)
+    private val pathMatcher: PathMatcher
+
+    init {
+        pathMatcher = AntPathMatcher("/")
+    }
+
+    companion object {
+        private val LOGGER = KotlinLogging.logger {}
+    }
+
+    override fun shouldNotFilter(request: HttpServletRequest) = excludePath.stream()
+        .anyMatch { pattern -> pathMatcher.match(pattern, request.requestURI) }
 
     override fun doFilterInternal(
         request: HttpServletRequest,
@@ -45,6 +55,7 @@ class JwtSecurityFilter(
             SecurityContextHolder.getContext().authentication = authentication
             filterChain.doFilter(request, response)
         } catch (exception: AuthException) {
+            LOGGER.info { exception }
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, exception.message)
         }
     }

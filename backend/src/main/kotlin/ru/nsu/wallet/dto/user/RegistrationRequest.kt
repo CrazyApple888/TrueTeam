@@ -15,14 +15,14 @@ data class RegistrationRequest(
                 "\\x0b\\x0c\\x0e-\\x7f])+)\\])"
     )
     @field:Size(max = 128, message = "Длина почтового адреса должна быть до 128 символов")
-    @field:NotBlank(message = "Поле \"Пароль\" не должно быть пустым")
+    @field:NotBlank(message = "Почта не должна быть пустой")
     val email: String,
 
-    @field:NotBlank(message = "Поле \"Пароль\" не должно быть пустым")
+    @field:NotBlank(message = "Пароль не должен быть пустым")
     @field:Size(min = 8, max = 64, message = "Длина пароля должны быть от 8 до 64 символов")
     val password: String,
 
-    @field:NotBlank(message = "Поле \"Имя\" не должно быть пустым")
+    @field:NotBlank(message = "Имя не должно быть пустым")
     @field:Size(max = 128, message = "Длина поля \"Имя\" не может превышать 128 символов")
     val firstName: String,
 )
