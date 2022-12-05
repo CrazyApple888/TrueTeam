@@ -1,4 +1,5 @@
 # TrueTeam
+Ссылка на фигму с концептом дизайна и use-cases: https://www.figma.com/file/RQOkBDHBiwMXwh1FLiv7sa/AlfaHackaton?node-id=0%3A1&t=fNRWqLMEXnONfb3G-1
 # Backend
 ## Документация API реализована при помощи swagger. Endpoint по умолчанию: /swagger-ui/index.html
 Примеры документации:
