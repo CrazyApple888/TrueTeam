@@ -1,13 +1,18 @@
 # TrueTeam
+# Backend
+## Документация API реализована при помощи swagger. Endpoint по умолчанию: /swagger-ui/index.html
+Примеры документации:
+<img width="1440" alt="Снимок экрана 2022-12-05 в 17 55 56" src="https://user-images.githubusercontent.com/62795541/205648568-b6ce87cc-64a6-4a09-a6e3-a4947e1b4f2e.png">
+<img width="1440" alt="Снимок экрана 2022-12-05 в 17 56 05" src="https://user-images.githubusercontent.com/62795541/205648579-5153a78f-fc38-4ae5-8cc2-44111927ebbf.png">
 
-# Как поднять backend sevice?
-## В терминале:
+## Как поднять backend sevice?
+### В терминале:
 1. docker run --name postgres -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -p 5432:5432  -d postgres
 2. docker run --name pgadmin -e PGADMIN_DEFAULT_PASSWORD=admin -e PGADMIN_DEFAULT_EMAIL=admin@mail.ru -p 5050:80 -d dpage/pgadmin4
 3. docker ps -a
 4. docker inspect postgres-CONTAINER-ID | grep IPAddress
 
-## В браузере:
+### В браузере:
 
 5. Заходим на localhost:5050
 6. login: admin@mail.ru password: admin
@@ -41,7 +46,7 @@
     
     Для пользователя a@bk.ru пароль безвозвратно утерян 🙂
 
-## В приложении:
+### В приложении:
 
 13. В application.yml меняем
 
@@ -53,7 +58,7 @@
     
 14. Ставим ключ для api 2 gis в geo-api.key
 
-## В idea:
+### В idea:
 
 15. mvn compile (Справа maven -> Lifecycle -> compile)
 16. Заходим в src/main/kotlin/Application.kt и зеленую стрелочку
