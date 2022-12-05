@@ -5,6 +5,7 @@ import ru.nsu.fevent.exception.UserNotFoundException
 import ru.nsu.wallet.dto.authentication.LoginRequest
 import ru.nsu.wallet.repository.UserRepository
 import ru.nsu.wallet.dto.authentication.JwtPair
+import ru.nsu.wallet.dto.authentication.RefreshTokenRequest
 import ru.nsu.wallet.entity.User
 import ru.nsu.wallet.exception.AuthException
 import ru.nsu.wallet.utils.JwtUtils
@@ -20,8 +21,8 @@ class AuthService(
         private const val JWT_AUTH_EXCEPTION_MESSAGE = "Невалидный JWT токен"
     }
 
-    fun login(refreshToken: String): JwtPair {
-        val user = getCheckedUserByJwt(refreshToken)
+    fun login(refreshTokenRequest: RefreshTokenRequest): JwtPair {
+        val user = getCheckedUserByJwt(refreshTokenRequest.refreshToken)
         return updateJwtTokens(user)
     }
 

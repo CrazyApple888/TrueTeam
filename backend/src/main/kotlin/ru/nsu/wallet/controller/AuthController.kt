@@ -23,7 +23,7 @@ class AuthController(private val authService: AuthService) {
 
     @PostMapping("/refresh")
     fun loginByRefreshToken(@RequestBody refreshTokenRequest: RefreshTokenRequest): ResponseEntity<JwtPair> {
-        val jwtPair = authService.login(refreshTokenRequest.refreshToken)
+        val jwtPair = authService.login(refreshTokenRequest)
 
         return ResponseEntity.ok(jwtPair)
     }
