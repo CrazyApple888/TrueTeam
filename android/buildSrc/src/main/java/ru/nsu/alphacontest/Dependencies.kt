@@ -8,7 +8,7 @@ object Dependencies {
         const val CORE = "1.7.0"
         const val APP_COMPAT = "1.4.1"
         const val ROOM = "2.4.1"
-        const val NAVIGATION = "2.4.2"
+        const val NAVIGATION = "2.5.3"
         const val GSON = "2.5.0"
         const val KOIN = "3.3.0"
         const val COROUTINES = "1.6.0"
@@ -57,6 +57,11 @@ object Dependencies {
 
     object Gson {
         const val GSON = "com.squareup.retrofit2:converter-gson:${Versions.GSON}"
+    }
+
+    object Navigation {
+        const val NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}"
+        const val NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"
     }
 
     const val VIEW_BINDING_DELEGATE = "com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.6"

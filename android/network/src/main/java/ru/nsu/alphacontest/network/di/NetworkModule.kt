@@ -21,3 +21,5 @@ val NetworkModule = module {
         )
     }
 }
+
+val NetworkModules = listOf(NetworkModule)
