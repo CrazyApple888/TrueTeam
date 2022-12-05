@@ -36,6 +36,7 @@ class PasswordService(
         return Base64Utils.encodeToString(hashedPassword)
     }
 
+    @Throws(PasswordException::class)
     fun checkPasswordConstraints(password: String) {
         passwordConstraintCheckers.forEach { checker -> checker.check(password) }
     }

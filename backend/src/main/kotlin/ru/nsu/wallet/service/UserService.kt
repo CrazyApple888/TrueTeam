@@ -1,12 +1,13 @@
 package ru.nsu.wallet.service
 
 import org.springframework.stereotype.Service
-import ru.nsu.fevent.exception.RegistrationException
-import ru.nsu.fevent.exception.UserNotFoundException
+import ru.nsu.wallet.exception.RegistrationException
+import ru.nsu.wallet.exception.UserNotFoundException
 import ru.nsu.wallet.dto.user.RegistrationRequest
 import ru.nsu.wallet.dto.authentication.JwtPair
 import ru.nsu.wallet.dto.authentication.LoginRequest
 import ru.nsu.wallet.entity.User
+import ru.nsu.wallet.exception.PasswordException
 import ru.nsu.wallet.repository.UserRepository
 
 @Service
@@ -20,6 +21,7 @@ class UserService(
         return userRepository.getById(userId) ?: throw UserNotFoundException("Пользователь не найден")
     }
 
+    @Throws(PasswordException::class, RegistrationException::class)
     fun registerUser(registrationRequest: RegistrationRequest): JwtPair {
         passwordService.checkPasswordConstraints(registrationRequest.password)
 

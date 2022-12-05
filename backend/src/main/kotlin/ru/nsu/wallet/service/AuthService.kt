@@ -1,7 +1,7 @@
 package ru.nsu.wallet.service
 
 import org.springframework.stereotype.Service
-import ru.nsu.fevent.exception.UserNotFoundException
+import ru.nsu.wallet.exception.UserNotFoundException
 import ru.nsu.wallet.dto.authentication.LoginRequest
 import ru.nsu.wallet.repository.UserRepository
 import ru.nsu.wallet.dto.authentication.JwtPair

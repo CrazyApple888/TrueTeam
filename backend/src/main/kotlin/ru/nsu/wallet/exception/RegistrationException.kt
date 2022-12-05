@@ -1,3 +1,3 @@
-package ru.nsu.fevent.exception
+package ru.nsu.wallet.exception
 
 class RegistrationException(message: String) : Exception(message)

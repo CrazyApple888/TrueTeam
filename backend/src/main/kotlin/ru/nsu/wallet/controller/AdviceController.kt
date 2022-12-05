@@ -7,8 +7,8 @@ import org.springframework.validation.FieldError
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
-import ru.nsu.fevent.exception.RegistrationException
-import ru.nsu.fevent.exception.UserNotFoundException
+import ru.nsu.wallet.exception.RegistrationException
+import ru.nsu.wallet.exception.UserNotFoundException
 import ru.nsu.wallet.dto.ErrorMessage
 import ru.nsu.wallet.exception.AuthException
 import ru.nsu.wallet.exception.PasswordException

@@ -1,3 +1,3 @@
-package ru.nsu.fevent.exception
+package ru.nsu.wallet.exception
 
 class UserNotFoundException(message: String) : RuntimeException(message)
