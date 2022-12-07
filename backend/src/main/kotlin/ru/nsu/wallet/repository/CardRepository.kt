@@ -9,6 +9,6 @@ interface CardRepository : CrudRepository<Card?, Int?> {
 
     fun deleteByNumberAndOwnerId(number: String, userId: Int)
 
-    fun findAllByTypeAndOwnerId(type: String, userId: Int): List<Card>
+    fun findAllByCategoryAndOwnerId(category: String, userId: Int): List<Card>
 
 }
