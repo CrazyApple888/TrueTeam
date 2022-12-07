@@ -13,5 +13,6 @@ enum class BarcodeType {
     FORMAT_UPC_E,
     FORMAT_PDF417,
     FORMAT_AZTEC,
+    FORMAT_DATA_MATRIX,
     NO_BARCODE
 }
