@@ -21,12 +21,14 @@ class GisGeoApiService(
         private val LOGGER = KotlinLogging.logger {}
     }
 
+
+    /*todo тут можно замер времени аспектом сделать чтоб прям круто было*/
     @Throws(GeoApiException::class)
-    override fun getNearestCompanies(lon: Double, lat: Double, type: String): NearestCompanyAnswer {
+    override fun getNearestCompanies(lon: Double, lat: Double, category: String): NearestCompanyAnswer {
         val params = mapOf(
             "key" to geoApiProperties.key,
             "type" to "branch",
-            "q" to type,
+            "q" to category,
             "sort" to "distance",
             "sort_point" to "$lon,$lat",
             "locale" to "ru_RU",

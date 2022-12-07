@@ -1,8 +1,8 @@
 package ru.nsu.wallet.utils
 
 object TitleFormatter {
-    fun formatType(type: String) =
-        type.lowercase()
+    fun formatCategory(category: String) =
+        category.lowercase()
             .trim()
 
     fun formatName(name: String) =

@@ -19,10 +19,11 @@ class CardService(
 ) {
 
     @Throws(GeoApiException::class)
-    fun getCardListOrderedByType(lon: Double, lat: Double, type: String, userId: Int): OrderedCards {
-        val unorderedCards = mutableListOf(*cardRepository.findAllByTypeAndOwnerId(type, userId).toTypedArray())
+    fun getCardListOrderedByCategory(lon: Double, lat: Double, category: String, userId: Int): OrderedCards {
+        val unorderedCards = mutableListOf(*cardRepository.findAllByCategoryAndOwnerId(category, userId).toTypedArray())
 
-        val orderedCardsResponse = orderCardService.orderByDistance(lon, lat, TitleFormatter.formatType(type), unorderedCards)
+        val orderedCardsResponse =
+            orderCardService.orderByDistance(lon, lat, TitleFormatter.formatCategory(category), unorderedCards)
 
         return orderedCardsResponse
     }
@@ -41,8 +42,9 @@ class CardService(
 
     private fun createNewCard(addCardRequest: AddCardRequest, user: User) = Card(
         owner = user,
-        type = TitleFormatter.formatType(addCardRequest.type),
+        category = TitleFormatter.formatCategory(addCardRequest.category),
         number = addCardRequest.number,
         name = addCardRequest.name,
+        barcodeType = addCardRequest.barcodeType
     )
 }
