@@ -15,9 +15,10 @@ CREATE TABLE IF NOT EXISTS cards
 (
     "id"               	INTEGER 		   PRIMARY KEY NOT NULL,
     "owner_id"          INTEGER            NOT NULL,
-    "type"              VARCHAR(64)        NOT NULL,
+    "category"          VARCHAR(64)        NOT NULL,
     "number"            VARCHAR(32)        NOT NULL,
     "name"          	VARCHAR(64)        NOT NULL,
+    "barcode_type"      VARCHAR(20)        NOT NULL,
 
     CONSTRAINT fk_card_owner FOREIGN KEY ("owner_id") REFERENCES users (id)
 );
