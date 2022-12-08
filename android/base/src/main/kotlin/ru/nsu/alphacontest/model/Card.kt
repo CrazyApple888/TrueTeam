@@ -62,7 +62,7 @@ sealed interface CardCategory {
     object Grocery : CardCategory {
 
         override val stringValue: String = "grocery"
-        override val localizedValue: String = ""
+        override val localizedValue: String = "Супермаркет"
     }
 
     object Optics : CardCategory {

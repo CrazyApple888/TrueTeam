@@ -103,7 +103,6 @@ class CardsFragment: Fragment(R.layout.fragment_cards) {
             .setMessage(
                 "Для корректной работы приложения требуется доступ к геолокации.\nПожалуйста, разрешите его на следующем экране."
             )
-            .setCancelable(true)
             .setPositiveButton("Хорошо") { _, _ ->
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                 val uri: Uri = Uri.fromParts("package", requireContext().packageName, null)
