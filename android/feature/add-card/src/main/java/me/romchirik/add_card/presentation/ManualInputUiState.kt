@@ -1,4 +1,8 @@
 package me.romchirik.add_card.presentation
 
-class ManualInputUiState {
+sealed class ManualInputUiState {
+
+    object Loading : ManualInputUiState()
+    object NotLoading : ManualInputUiState()
+    class Error(val exception: Throwable) : ManualInputUiState()
 }

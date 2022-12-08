@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingHorizontal="8dp">
+        android:paddingHorizontal="16dp">
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_group"
@@ -35,7 +35,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
-        android:contentDescription="Добавить карту"
+        android:contentDescription="@string/add_card_add_card"
         android:src="@drawable/ic_add" />
 
 </FrameLayout>

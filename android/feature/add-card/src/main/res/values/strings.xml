@@ -5,7 +5,9 @@
     <string name="add_card_card_number">Номер карты</string>
     <string name="add_card_card_info">Данные карты</string>
     <string name="add_card_continue">продолжить</string>
+    <string name="add_card_to_main_screen">на главную</string>
 
     <string name="barcode_scan_hint">Разместите камеру так, чтобы карта момещалась в рамку</string>
     <string name="to_manual_input_button">Ввести данные вручную</string>
+    <string name="add_card_card_added">Карта добавлена</string>
 </resources>
