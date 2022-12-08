@@ -1,5 +1,5 @@
 plugins {
-    id(Plugins.ANDROID_APPLICATION)
+    id(Plugins.ANDROID_LIBRARY)
     id(Plugins.KOTLIN_ANDROID)
 }
 
@@ -12,14 +12,11 @@ dependencies {
     implementation(Dependencies.APP_COMPAT)
     implementation(Dependencies.MATERIAL)
     implementation(Dependencies.VIEW_BINDING_DELEGATE)
-    implementation(project(Modules.LOGIN))
-    implementation(project(Modules.NETWORK))
-    implementation(project(Modules.TOKEN))
-    implementation(project(Modules.REGISTRATION))
-    implementation(Dependencies.Navigation.NAVIGATION_FRAGMENT)
     implementation(Dependencies.Navigation.NAVIGATION_UI)
+    implementation(Dependencies.Navigation.NAVIGATION_FRAGMENT)
+    implementation(Dependencies.Room.ROOM_KTX)
+    annotationProcessor(Dependencies.Room.ROOM_COMPILER)
+    implementation(Dependencies.Room.ROOM_RUNTIME)
+
     implementation(project(Modules.BASE))
-    implementation(project(Modules.CARDS))
-    implementation(project(Modules.BARCODE_CAMERA))
-    implementation(project(Modules.DATABASE))
 }

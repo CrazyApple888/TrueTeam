@@ -1,5 +1,6 @@
 package me.romchirik.barcode_camera.domain.model
 
+import ru.nsu.alphacontest.model.BarcodeType
 import java.io.Serializable
 
 

@@ -10,4 +10,5 @@ object Modules {
     const val BARCODE_CAMERA = ":feature:barcode-camera"
     const val REGISTRATION = ":feature:registration"
     const val UTILS = ":shared:utils"
+    const val DATABASE = ":shared:database"
 }
