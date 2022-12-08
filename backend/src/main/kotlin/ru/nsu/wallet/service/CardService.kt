@@ -42,7 +42,7 @@ class CardService(
 
     private fun createNewCard(addCardRequest: AddCardRequest, user: User) = Card(
         owner = user,
-        category = TitleFormatter.formatCategory(addCardRequest.category),
+        category = addCardRequest.category,
         number = addCardRequest.number,
         name = addCardRequest.name,
         barcodeType = addCardRequest.barcodeType
