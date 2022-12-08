@@ -1,4 +1,4 @@
-package me.romchirik.barcode_camera.domain.model
+package ru.nsu.alphacontest.model
 
 sealed class BarcodeType(val stringValue: String) {
 
