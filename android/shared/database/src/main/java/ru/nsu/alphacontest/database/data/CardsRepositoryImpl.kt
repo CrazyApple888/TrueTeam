@@ -25,7 +25,12 @@ class CardsRepositoryImpl(
     }
 
     override suspend fun delete(cards: List<Card>) = withContext(Dispatchers.IO) {
-        cards.map(cardMapper::mapToDb)
-            .forEach { cardsDao.deleteCard(it) }
+        cards.map(cardMapper::mapToDb).forEach { cardsDao.deleteCard(it) }
+    }
+
+    override suspend fun getByNumber(number: String) = withContext(Dispatchers.IO) {
+        cardsDao.getAll().filter {
+                it.barcodeNumber == number
+            }.map(cardMapper::mapFromDb).first()
     }
 }

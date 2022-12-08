@@ -11,8 +11,10 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.chip.Chip
@@ -32,7 +34,16 @@ class CardsFragment: Fragment(R.layout.fragment_cards) {
     private val viewModel: CardsViewModel by viewModel()
 
     private val adapter: CardsAdapter by lazy {
-        CardsAdapter()
+        CardsAdapter(
+            onCardClickListener = {
+                val request = NavDeepLinkRequest.Builder
+                    .fromUri("alfa-cards://crad_detail_fragment/?cardNumber=${it.number}".toUri())
+                    .build()
+                findNavController().navigate(
+                    request = request,
+                )
+            }
+        )
     }
 
     private var requestLocationLauncher: ActivityResultLauncher<Array<String>>? = null
