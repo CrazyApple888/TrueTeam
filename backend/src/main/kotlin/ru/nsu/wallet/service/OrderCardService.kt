@@ -18,7 +18,7 @@ class OrderCardService(private val geoApiService: GeoApiService) {
             но вроде api 2gis отдает в отсортированном виде*/
 
         /*todo позор вонючий, переписать по нормальному*/
-        val nearestCards = ArrayList<Card>()
+        val nearestCards = HashSet<Card>()
         for (nearestCompany in nearestCompanyList.result.items) {
             val formattedName = formatName(nearestCompany.name)
 
@@ -33,7 +33,7 @@ class OrderCardService(private val geoApiService: GeoApiService) {
         cards.sortBy { card -> card.name }
 
         return OrderedCards(
-            nearestCards = nearestCards,
+            nearestCards = nearestCards.toList(),
             anotherCards = cards
         )
     }
