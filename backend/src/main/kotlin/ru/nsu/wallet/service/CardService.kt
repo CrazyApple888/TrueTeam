@@ -18,12 +18,20 @@ class CardService(
     private val userService: UserService
 ) {
 
+    /*todo переделать*/
     @Throws(GeoApiException::class)
     fun getCardListOrderedByCategory(lon: Double, lat: Double, category: String, userId: Int): OrderedCards {
         val unorderedCards = mutableListOf(*cardRepository.findAllByCategoryAndOwnerId(category, userId).toTypedArray())
+        val allCards = mutableListOf(*cardRepository.findAllByOwnerId(userId).toTypedArray())
 
         val orderedCardsResponse =
-            orderCardService.orderByDistance(lon, lat, TitleFormatter.formatCategory(category), unorderedCards)
+            orderCardService.orderByDistance(
+                lon,
+                lat,
+                TitleFormatter.formatCategory(category),
+                unorderedCards,
+                allCards
+            )
 
         return orderedCardsResponse
     }

@@ -11,7 +11,13 @@ import ru.nsu.wallet.utils.TitleFormatter.formatName
 class OrderCardService(private val geoApiService: GeoApiService) {
 
     @Throws(GeoApiException::class)
-    fun orderByDistance(lon: Double, lat: Double, type: String, cards: MutableList<Card>): OrderedCards {
+    fun orderByDistance(
+        lon: Double,
+        lat: Double,
+        type: String,
+        cards: MutableList<Card>,
+        allCards: MutableList<Card>
+    ): OrderedCards {
         val nearestCompanyList = geoApiService.getNearestCompanies(lon, lat, type)
 
         /*todo тут возможно нужна сортировка nearestCompanyList по координатам,
@@ -29,12 +35,12 @@ class OrderCardService(private val geoApiService: GeoApiService) {
             }
         }
 
-        cards.removeAll(nearestCards)
+        allCards.removeAll(nearestCards)
         cards.sortBy { card -> card.name }
 
         return OrderedCards(
             nearestCards = nearestCards.toList(),
-            anotherCards = cards
+            anotherCards = allCards
         )
     }
 }
