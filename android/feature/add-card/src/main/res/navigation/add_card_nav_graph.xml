@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_card_nav_graph"
+    app:startDestination="@id/barcodeCameraFragment">
+
+    <fragment
+        android:id="@+id/manualInputFragment"
+        android:name="me.romchirik.add_card.ui.ManualInputFragment"
+        android:label="ManualInputFragment"
+        tools:layout="@layout/fragment_manual_input" />
+    <fragment
+        android:id="@+id/barcodeCameraFragment"
+        android:name="me.romchirik.add_card.ui.BarcodeCameraFragment"
+        android:label="BarcodeCameraFragment"
+        tools:layout="@layout/fragment_barcode_camera" >
+        <action
+            android:id="@+id/action_barcodeCameraFragment_to_manualInputFragment"
+            app:destination="@id/manualInputFragment" />
+    </fragment>
+</navigation>

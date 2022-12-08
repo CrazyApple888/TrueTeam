@@ -15,6 +15,7 @@ sealed class BarcodeType(val stringValue: String) {
     class Pdf417 : BarcodeType("FORMAT_PDF417")
     class Aztec : BarcodeType("FORMAT_AZTEC")
     class DataMatrix : BarcodeType("FORMAT_DATA_MATRIX")
+    class NoBarcode : BarcodeType("NO_BARCODE")
 
     companion object {
 
@@ -33,6 +34,7 @@ sealed class BarcodeType(val stringValue: String) {
                 "FORMAT_PDF417" -> Pdf417()
                 "FORMAT_AZTEC" -> Aztec()
                 "FORMAT_DATA_MATRIX" -> DataMatrix()
+                "NO_BARCODE" -> NoBarcode()
                 else -> throw IllegalArgumentException()
             }
     }

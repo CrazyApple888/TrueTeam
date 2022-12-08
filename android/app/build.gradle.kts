@@ -20,7 +20,7 @@ dependencies {
     implementation(Dependencies.Navigation.NAVIGATION_UI)
     implementation(project(Modules.BASE))
     implementation(project(Modules.CARDS))
-    implementation(project(Modules.BARCODE_CAMERA))
     implementation(project(Modules.PROFILE))
     implementation(project(Modules.DATABASE))
+    implementation(project(Modules.ADD_CARD))
 }

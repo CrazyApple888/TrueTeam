@@ -2,7 +2,7 @@ package ru.nsu.alphacontest
 
 import android.app.Application
 import me.idrew.main_cards.di.CardsModule
-import me.romchirik.barcode_camera.di.BarcodeCameraModules
+import me.romchirik.add_card.di.AddCardModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext.startKoin
 import ru.nsu.alphacontest.database.data.di.DatabaseModule
@@ -26,10 +26,11 @@ class AlphaApplication : Application() {
                     NetworkModules,
                     TokenModules,
                     RegistrationModules,
-                    BarcodeCameraModules,
                     ProfileModules,
                     DatabaseModule,
                     CardsModule,
+                    DatabaseModule,
+                    AddCardModules,
                 ).flatten()
             )
         }
