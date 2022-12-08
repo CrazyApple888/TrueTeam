@@ -6,6 +6,7 @@ import ru.nsu.wallet.entity.Card
 import ru.nsu.wallet.exception.GeoApiException
 import ru.nsu.wallet.service.geo.gis.GeoApiService
 import ru.nsu.wallet.utils.TitleFormatter.formatName
+import java.util.TreeSet
 
 @Service
 class OrderCardService(private val geoApiService: GeoApiService) {
@@ -24,7 +25,7 @@ class OrderCardService(private val geoApiService: GeoApiService) {
             но вроде api 2gis отдает в отсортированном виде*/
 
         /*todo позор вонючий, переписать по нормальному*/
-        val nearestCards = HashSet<Card>()
+        val nearestCards = LinkedHashSet<Card>()
         for (nearestCompany in nearestCompanyList.result.items) {
             val formattedName = formatName(nearestCompany.name)
 
