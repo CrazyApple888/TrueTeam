@@ -2,6 +2,7 @@ package me.romchirik.add_card.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.addCallback
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDeepLinkRequest
@@ -27,6 +28,10 @@ class SuccessFragment : Fragment(R.layout.fragment_success) {
         } ?: returnToMainScreen()
 
         binding.submitButton.setOnClickListener {
+            returnToMainScreen()
+        }
+
+        activity?.onBackPressedDispatcher?.addCallback {
             returnToMainScreen()
         }
     }
