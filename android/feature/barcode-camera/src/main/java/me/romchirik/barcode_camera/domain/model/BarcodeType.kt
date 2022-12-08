@@ -15,9 +15,11 @@ sealed class BarcodeType(val stringValue: String) {
     class Pdf417 : BarcodeType("FORMAT_PDF417")
     class Aztec : BarcodeType("FORMAT_AZTEC")
     class DataMatrix : BarcodeType("FORMAT_DATA_MATRIX")
+    class NoBarcode : BarcodeType("NO_BARCODE")
 }
 
 fun Int.toBarcodeType() = when (this) {
+    -1 -> BarcodeType.NoBarcode()
     1 -> BarcodeType.Code128()
     2 -> BarcodeType.Code39()
     4 -> BarcodeType.Code93()
