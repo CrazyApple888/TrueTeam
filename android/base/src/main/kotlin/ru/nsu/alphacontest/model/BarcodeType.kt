@@ -15,6 +15,27 @@ sealed class BarcodeType(val stringValue: String) {
     class Pdf417 : BarcodeType("FORMAT_PDF417")
     class Aztec : BarcodeType("FORMAT_AZTEC")
     class DataMatrix : BarcodeType("FORMAT_DATA_MATRIX")
+
+    companion object {
+
+        fun forName(name: String): BarcodeType =
+            when (name) {
+                "FORMAT_QR_CODE" -> QrCode()
+                "FORMAT_EAN_13" -> Ean13()
+                "FORMAT_CODE_128" -> Code128()
+                "FORMAT_CODE_39" -> Code39()
+                "FORMAT_CODE_93" -> Code93()
+                "FORMAT_CODABAR" -> Codabar()
+                "FORMAT_EAN_8" -> Ean8()
+                "FORMAT_ITF" -> Itf()
+                "FORMAT_UPC_A" -> UpcA()
+                "FORMAT_UPC_E" -> UpcE()
+                "FORMAT_PDF417" -> Pdf417()
+                "FORMAT_AZTEC" -> Aztec()
+                "FORMAT_DATA_MATRIX" -> DataMatrix()
+                else -> throw IllegalArgumentException()
+            }
+    }
 }
 
 fun Int.toBarcodeType() = when (this) {

@@ -13,4 +13,18 @@ class Barcode(
 
 sealed interface CardCategory {
 
+    val stringValue: String
+
+    companion object {
+
+        fun forName(name: String): CardCategory =
+            when (name) {
+                else -> Business
+            }
+    }
+
+    object Business : CardCategory {
+
+        override val stringValue: String = "business"
+    }
 }

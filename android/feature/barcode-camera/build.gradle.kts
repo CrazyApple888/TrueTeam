@@ -12,8 +12,6 @@ dependencies {
     implementation(Dependencies.APP_COMPAT)
     implementation(Dependencies.MATERIAL)
     implementation(Dependencies.VIEW_BINDING_DELEGATE)
-    implementation(project(Modules.DESIGN))
-    implementation(project(Modules.BASE))
     implementation(Dependencies.Camera.CAMERA_X_CORE)
     implementation(Dependencies.Navigation.NAVIGATION_UI)
     implementation(Dependencies.Navigation.NAVIGATION_FRAGMENT)
@@ -22,4 +20,6 @@ dependencies {
     implementation(Dependencies.Camera.CAMERA_X_EXT)
     implementation(Dependencies.Barcode.BARCODE_SCANNER)
 
+    implementation(project(Modules.DESIGN))
+    implementation(project(Modules.BASE))
 }

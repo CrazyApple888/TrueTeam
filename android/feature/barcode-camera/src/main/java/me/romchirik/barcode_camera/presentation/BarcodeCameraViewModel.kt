@@ -3,8 +3,8 @@ package me.romchirik.barcode_camera.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import me.romchirik.barcode_camera.domain.model.BarcodeScanResult
-import me.romchirik.barcode_camera.domain.model.BarcodeType
 import ru.nsu.alphacontest.SingleLiveEvent
+import ru.nsu.alphacontest.model.BarcodeType
 
 class BarcodeCameraViewModel(
 

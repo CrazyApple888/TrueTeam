@@ -7,8 +7,8 @@ import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
-import me.romchirik.barcode_camera.domain.model.BarcodeType
-import me.romchirik.barcode_camera.domain.model.toBarcodeType
+import ru.nsu.alphacontest.model.BarcodeType
+import ru.nsu.alphacontest.model.toBarcodeType
 
 class BarcodeAnalyzer(
     private val onRecognitionSuccess: (BarcodeType, String?) -> Unit,
