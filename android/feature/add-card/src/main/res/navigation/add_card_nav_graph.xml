@@ -9,7 +9,11 @@
         android:id="@+id/manualInputFragment"
         android:name="me.romchirik.add_card.ui.ManualInputFragment"
         android:label="ManualInputFragment"
-        tools:layout="@layout/fragment_manual_input" />
+        tools:layout="@layout/fragment_manual_input" >
+        <action
+            android:id="@+id/action_manualInputFragment_to_successFragment"
+            app:destination="@id/successFragment" />
+    </fragment>
     <fragment
         android:id="@+id/barcodeCameraFragment"
         android:name="me.romchirik.add_card.ui.BarcodeCameraFragment"
@@ -19,4 +23,9 @@
             android:id="@+id/action_barcodeCameraFragment_to_manualInputFragment"
             app:destination="@id/manualInputFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/successFragment"
+        android:name="me.romchirik.add_card.ui.SuccessFragment"
+        android:label="fragment_success"
+        tools:layout="@layout/fragment_success" />
 </navigation>

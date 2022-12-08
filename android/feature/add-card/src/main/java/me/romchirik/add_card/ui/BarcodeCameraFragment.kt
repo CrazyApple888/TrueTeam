@@ -35,8 +35,10 @@ class BarcodeCameraFragment : Fragment(R.layout.fragment_barcode_camera) {
         super.onViewCreated(view, savedInstanceState)
         cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
         cameraProviderFuture.addListener({
-            val cameraProvider = cameraProviderFuture.get()
-            bindPreview(cameraProvider)
+            this.view?.let {
+                val cameraProvider = cameraProviderFuture.get()
+                bindPreview(cameraProvider)
+            }
         }, ContextCompat.getMainExecutor(requireContext()))
 
         viewModel.uiState.observe(viewLifecycleOwner, ::obtainUiState)

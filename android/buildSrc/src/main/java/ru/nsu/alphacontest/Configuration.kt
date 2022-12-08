@@ -44,7 +44,7 @@ fun configureAndroidLibraryModule(project: Project) {
         compileSdkVersion(Settings.COMPILE_SDK_VERSION)
         buildToolsVersion(Settings.BUILD_TOOLS_VERSION)
         defaultConfig {
-            buildConfigField("String", "API_ENDPOINT", "\"http://51.250.90.243:8081/\"")
+            buildConfigField("String", "API_ENDPOINT", "\"http://51.250.84.127:8081/\"")
             minSdk = Settings.MIN_SDK_VERSION
             targetSdk = Settings.TARGET_SDK_VERSION
             multiDexEnabled = true
