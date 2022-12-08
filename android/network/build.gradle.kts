@@ -9,4 +9,6 @@ dependencies {
     implementation(Dependencies.NETWORK.LOGGING_INTERCEPTOR)
     implementation(Dependencies.NETWORK.RETROFIT)
     implementation(Dependencies.Gson.GSON)
+
+    implementation(project(Modules.TOKEN))
 }

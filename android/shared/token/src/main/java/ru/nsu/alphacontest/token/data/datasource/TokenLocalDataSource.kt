@@ -3,6 +3,7 @@ package ru.nsu.alphacontest.token.data.datasource
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import ru.nsu.alphacontest.token.AuthCredentials
 
 class TokenLocalDataSource(
     private val sharedPreferences: SharedPreferences
@@ -31,6 +32,19 @@ class TokenLocalDataSource(
     override fun saveRefreshToken(token: String) {
         sharedPreferences.edit(commit = true) {
             putString(REFRESH_TOKEN, token)
+        }
+    }
+
+    override fun getCredentials(): AuthCredentials =
+        AuthCredentials(
+            accessToken = getJWTToken(),
+            refreshToken = getRefreshToken(),
+        )
+
+    override fun saveCredentials(credentials: AuthCredentials) {
+        sharedPreferences.edit(commit = true) {
+            putString(JWT_TOKEN, credentials.accessToken)
+            putString(REFRESH_TOKEN, credentials.refreshToken)
         }
     }
 }
