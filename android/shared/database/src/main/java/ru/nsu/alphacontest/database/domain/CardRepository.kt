@@ -4,9 +4,9 @@ import ru.nsu.alphacontest.model.Card
 
 interface CardRepository {
 
-    suspend fun saveCards(vararg cards: Card)
+    suspend fun saveCards(cards: List<Card>)
 
     suspend fun getAll(): List<Card>
 
-    suspend fun delete(vararg cards: Card)
+    suspend fun delete(cards: List<Card>)
 }

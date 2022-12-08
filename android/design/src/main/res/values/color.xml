@@ -5,4 +5,5 @@
     <color name="primary">#FF000000</color>
     <color name="disabled">#575757</color>
     <color name="ripple_color">#B3FFFFFF</color>
+    <color name="stroke_color">#1D000000</color>
 </resources>

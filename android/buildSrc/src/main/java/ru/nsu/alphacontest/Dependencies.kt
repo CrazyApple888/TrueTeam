@@ -16,6 +16,8 @@ object Dependencies {
         const val LOGGING_INTERCEPTOR = "4.9.3"
         const val CAMERA_X = "1.1.0"
         const val BARCODE_SCANNER = "17.0.3"
+        const val LOOPER_ADAPTER = "1.0.2"
+        const val RECYCLER_VIEW = "1.2.1"
     }
 
     const val GRADLE = "com.android.tools.build:gradle:${Versions.GRADLE}"
@@ -87,5 +89,7 @@ object Dependencies {
         const val BARCODE_SCANNER = "com.google.mlkit:barcode-scanning:${Versions.BARCODE_SCANNER}"
     }
 
-
+    object Recycler {
+        const val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:${Versions.RECYCLER_VIEW}"
+    }
 }
