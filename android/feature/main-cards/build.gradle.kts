@@ -11,4 +11,13 @@ dependencies {
     implementation(Dependencies.CORE)
     implementation(Dependencies.APP_COMPAT)
     implementation(Dependencies.Navigation.NAVIGATION_FRAGMENT)
+    implementation(Dependencies.MATERIAL)
+    implementation(Dependencies.Recycler.RECYCLER_VIEW)
+    implementation(Dependencies.VIEW_BINDING_DELEGATE)
+    implementation(Dependencies.NETWORK.RETROFIT)
+    implementation(Dependencies.Gson.GSON)
+
+    implementation(project(Modules.DESIGN))
+    implementation(project(Modules.BASE))
+    implementation(project(Modules.DATABASE))
 }

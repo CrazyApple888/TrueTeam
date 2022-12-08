@@ -1,6 +1,9 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id(Plugins.ANDROID_LIBRARY)
     id(Plugins.KOTLIN_ANDROID)
+    id(Plugins.KOTLIN_KAPT)
 }
 
 dependencies {
@@ -8,14 +11,8 @@ dependencies {
     implementation(Dependencies.Coroutines.COROUTINES_ANDROID)
     implementation(Dependencies.Coroutines.COROUTINES_CORE)
     implementation(Dependencies.Koin.KOIN_ANDROID)
-    implementation(Dependencies.CORE)
-    implementation(Dependencies.APP_COMPAT)
-    implementation(Dependencies.MATERIAL)
-    implementation(Dependencies.VIEW_BINDING_DELEGATE)
-    implementation(Dependencies.Navigation.NAVIGATION_UI)
-    implementation(Dependencies.Navigation.NAVIGATION_FRAGMENT)
     implementation(Dependencies.Room.ROOM_KTX)
-    annotationProcessor(Dependencies.Room.ROOM_COMPILER)
+    kapt(Dependencies.Room.ROOM_COMPILER)
     implementation(Dependencies.Room.ROOM_RUNTIME)
 
     implementation(project(Modules.BASE))

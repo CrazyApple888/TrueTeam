@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/cardsFragment"
-        android:name="me.idrew.main_cards.CardsFragment"
+        android:name="me.idrew.main_cards.ui.CardsFragment"
         android:label="CardsFragment"
         tools:layout="@layout/fragment_cards">
         <deepLink

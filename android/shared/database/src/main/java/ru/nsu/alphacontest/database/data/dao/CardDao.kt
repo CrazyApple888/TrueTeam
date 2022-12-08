@@ -3,6 +3,7 @@ package ru.nsu.alphacontest.database.data.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import ru.nsu.alphacontest.database.data.model.CardModel
 
@@ -10,14 +11,14 @@ import ru.nsu.alphacontest.database.data.model.CardModel
 interface CardDao {
 
     @Query("SELECT * FROM cards")
-    suspend fun getAll(): List<CardModel>
+    fun getAll(): List<CardModel>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun saveCard(card: CardModel)
 
     @Insert
-    suspend fun saveCard(card: CardModel)
-
-    @Insert
-    suspend fun saveAll(cards: List<CardModel>)
+    fun saveAll(cards: List<CardModel>)
 
     @Delete
-    suspend fun deleteCard(card: CardModel)
+    fun deleteCard(card: CardModel)
 }
