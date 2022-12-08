@@ -19,5 +19,4 @@ dependencies {
     implementation(project(Modules.DESIGN))
     implementation(project(Modules.NETWORK))
     implementation(project(Modules.TOKEN))
-    implementation(project(Modules.REGISTRATION))
 }

@@ -5,14 +5,16 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/splashFragment">
 
+
     <fragment
         android:id="@+id/splashFragment"
         android:name="ru.nsu.alphacontest.ui.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_sphash">
+
         <action
-            android:id="@+id/action_splashFragment_to_cardsFragment"
-            app:destination="@id/cardsFragment"
+            android:id="@+id/action_splashFragment_to_main_cards_graph"
+            app:destination="@id/main_nav_graph"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
         <action
@@ -20,11 +22,15 @@
             app:destination="@id/auth_nav_graph"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+        <deepLink
+            android:id="@+id/deepLink3"
+            app:uri="alfa-cards://splash_fragment" />
+
+
     </fragment>
-    <fragment
-        android:id="@+id/cardsFragment"
-        android:name="me.idrew.main_cards.CardsFragment"
-        tools:layout="@layout/fragment_cards"
-        android:label="CardsFragment" />
+    <include app:graph="@navigation/main_nav_graph" />
     <include app:graph="@navigation/auth_nav_graph" />
+    <include app:graph="@navigation/registration_nav_graph" />
+    <include app:graph="@navigation/profile_nav_graph" />
+
 </navigation>
