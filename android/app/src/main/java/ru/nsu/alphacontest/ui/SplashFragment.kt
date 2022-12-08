@@ -21,7 +21,7 @@ class SplashFragment : Fragment(R.layout.fragment_sphash) {
         viewModel.isUserAuthorized.observe(viewLifecycleOwner) { authorized ->
             findNavController().navigate(
                 if (authorized) R.id.action_splashFragment_to_cardsFragment
-                else R.id.action_splashFragment_to_loginFragment
+                else R.id.action_splashFragment_to_auth_nav_graph
             )
         }
     }

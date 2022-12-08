@@ -6,6 +6,8 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.nsu.alphacontest.design.dialogs.InternalServerErrorDialog
@@ -66,6 +68,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding.loginButton.setOnClickListener {
             viewModel.onLoginClicked()
         }
+
+        binding.registrationButton.setOnClickListener {
+           findNavController().navigate(
+               R.id.action_loginFragment_to_registrationFragment,
+           )
+        }
     }
 
     private fun obtainUiState(state: LoginUiState) {
@@ -98,7 +106,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
             ContentState.Success -> {
                 loadingDialog.dismissIfVisible()
-                // TODO navigate to content screen
+                findNavController().navigate(
+                    R.id.action_loginFragment_to_cardsFragment
+                )
             }
         }
     }

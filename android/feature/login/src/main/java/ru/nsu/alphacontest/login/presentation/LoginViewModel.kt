@@ -24,14 +24,6 @@ class LoginViewModel(
 
     private val exceptionHandler = coroutineNetworkExceptionHandler { exception ->
         when (exception) {
-            is InternalServerError -> {
-                _uiState.value = _uiState.value.copy(
-                    contentState = ContentState.Error(
-                        message = null,
-                        type = ErrorType.InternalServerError,
-                    )
-                )
-            }
             is NoConnectivityException -> {
                 _uiState.value = _uiState.value.copy(
                     contentState = ContentState.Error(
@@ -40,7 +32,7 @@ class LoginViewModel(
                     )
                 )
             }
-            is Exception -> {
+            is IllegalArgumentException -> {
                 if (exception.message != null) {
                     _uiState.value = _uiState.value.copy(
                         contentState = ContentState.Error(
@@ -51,6 +43,14 @@ class LoginViewModel(
                 } else {
                     throw exception
                 }
+            }
+            else -> {
+                _uiState.value = _uiState.value.copy(
+                    contentState = ContentState.Error(
+                        message = null,
+                        type = ErrorType.InternalServerError,
+                    )
+                )
             }
         }
     }
