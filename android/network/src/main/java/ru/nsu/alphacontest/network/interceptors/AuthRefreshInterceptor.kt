@@ -18,11 +18,16 @@ class AuthRefreshInterceptor(
     private val lock = Any()
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val response = chain.proceed(chain.request())
         val requestCredentials = tokenDataSource.getCredentials()
 
-        if (response.code != HttpURLConnection.HTTP_UNAUTHORIZED || !requestCredentials.isValid()
-        ) {
+        val response = chain.request().newBuilder().addHeader(
+            AUTH_HEADER,
+            requestCredentials.accessToken.orEmpty()
+        ).build().let {
+            chain.proceed(it)
+        }
+
+        if (response.code != HttpURLConnection.HTTP_UNAUTHORIZED || !requestCredentials.isValid()) {
             return response
         }
 

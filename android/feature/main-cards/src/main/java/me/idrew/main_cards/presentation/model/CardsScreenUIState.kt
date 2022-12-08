@@ -6,8 +6,14 @@ data class CardsScreenUIState(
     val availableCategories: List<ChipCategory> = emptyList(),
     val cards: List<CardListItem> = emptyList(),
     val selectedCategory: ChipCategory? = null,
-    val state: UIState = UIState.Initial()
+    val state: UIState = UIState.Initial(),
+    val errorType: ErrorType? = null
 )
+
+sealed interface ErrorType {
+    class Camera: ErrorType
+    class Location: ErrorType
+}
 
 sealed interface UIState {
     class Initial : UIState

@@ -4,7 +4,7 @@ import ru.nsu.alphacontest.model.Card
 
 interface CardRepository {
 
-    suspend fun saveCards(cards: List<Card>)
+    suspend fun updateCache(cards: List<Card>)
 
     suspend fun getAll(): List<Card>
 

@@ -10,7 +10,7 @@ class PermissionCheckerImpl(
     private val context: Context
 ) : PermissionChecker {
 
-    override fun isPermissionLocationGranted(): Boolean =
+    override fun isLocationPermissionGranted(): Boolean =
         ContextCompat.checkSelfPermission(
             context,
             Manifest.permission.ACCESS_COARSE_LOCATION
@@ -19,4 +19,10 @@ class PermissionCheckerImpl(
                     context,
                     Manifest.permission.ACCESS_FINE_LOCATION
                 ) == PackageManager.PERMISSION_GRANTED
+
+    override fun isCameraPermissionGranted(): Boolean =
+        ContextCompat.checkSelfPermission(
+            context,
+            Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
 }
