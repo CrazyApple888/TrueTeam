@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="select_category">Выребите категорию</string>
+    <string name="add_card_name_hint">Название заведения</string>
+    <string name="add_card_card_number">Номер карты</string>
+    <string name="add_card_card_info">Данные карты</string>
+    <string name="add_card_continue">продолжить</string>
+
+    <string name="barcode_scan_hint">Разместите камеру так, чтобы карта момещалась в рамку</string>
+    <string name="to_manual_input_button">Ввести данные вручную</string>
+</resources>
