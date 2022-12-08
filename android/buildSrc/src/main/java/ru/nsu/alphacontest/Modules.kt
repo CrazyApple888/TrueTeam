@@ -9,6 +9,8 @@ object Modules {
     const val CARDS = ":feature:main-cards"
     const val REGISTRATION = ":feature:registration"
     const val ADD_CARD = ":feature:add-card"
+    const val PROFILE = ":feature:profile"
     const val UTILS = ":shared:utils"
+    const val NAVIGATION = ":shared:navigation"
     const val DATABASE = ":shared:database"
 }

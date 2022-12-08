@@ -9,7 +9,7 @@ import ru.nsu.alphacontest.database.data.mapper.CardMapper
 import ru.nsu.alphacontest.database.domain.CardRepository
 
 private val databaseModule = module {
-    single { database(androidContext()) }
+    single <AppDatabase> { database(androidContext()) }
     factory { CardMapper() }
     factory<CardRepository> { CardsRepositoryImpl(get<AppDatabase>().cardsDao(), get()) }
 }

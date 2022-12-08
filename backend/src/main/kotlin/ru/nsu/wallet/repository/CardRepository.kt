@@ -11,4 +11,6 @@ interface CardRepository : CrudRepository<Card?, Int?> {
 
     fun findAllByCategoryAndOwnerId(category: String, userId: Int): List<Card>
 
+    fun findAllByOwnerId(userId: Int): List<Card>
+
 }

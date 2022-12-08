@@ -2,12 +2,15 @@ package ru.nsu.alphacontest.login.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.net.toUri
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import by.kirich1409.viewbindingdelegate.viewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.nsu.alphacontest.design.dialogs.InternalServerErrorDialog
@@ -70,9 +73,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
 
         binding.registrationButton.setOnClickListener {
-           findNavController().navigate(
-               R.id.action_loginFragment_to_registrationFragment,
-           )
+            val request = NavDeepLinkRequest.Builder
+                .fromUri("alfa-cards://registration_fragment".toUri())
+                .build()
+            findNavController().navigate(
+                request = request,
+            )
         }
     }
 
@@ -106,8 +112,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
             ContentState.Success -> {
                 loadingDialog.dismissIfVisible()
+                val request = NavDeepLinkRequest.Builder
+                    .fromUri("alfa-cards://main_cards_fragment".toUri())
+                    .build()
                 findNavController().navigate(
-                    R.id.action_loginFragment_to_cardsFragment
+                    request = request,
+                    navOptions = NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build()
                 )
             }
         }
