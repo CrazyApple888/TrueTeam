@@ -9,4 +9,6 @@ interface CardRepository {
     suspend fun getAll(): List<Card>
 
     suspend fun delete(cards: List<Card>)
+
+    suspend fun getByNumber(number: String): Card
 }

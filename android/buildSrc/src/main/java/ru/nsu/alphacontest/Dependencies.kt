@@ -16,6 +16,7 @@ object Dependencies {
         const val LOGGING_INTERCEPTOR = "4.9.3"
         const val CAMERA_X = "1.1.0"
         const val BARCODE_SCANNER = "17.0.3"
+        const val BARCODE_GENERATOR = "4.3.0"
         const val LOOPER_ADAPTER = "1.0.2"
         const val RECYCLER_VIEW = "1.2.1"
     }
@@ -87,6 +88,7 @@ object Dependencies {
 
     object Barcode {
         const val BARCODE_SCANNER = "com.google.mlkit:barcode-scanning:${Versions.BARCODE_SCANNER}"
+        const val BARCODE_GENERATOR = "com.journeyapps:zxing-android-embedded:${Versions.BARCODE_GENERATOR}"
     }
 
     object Recycler {

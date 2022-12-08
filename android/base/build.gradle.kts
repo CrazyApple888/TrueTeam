@@ -12,4 +12,5 @@ dependencies {
     implementation(Dependencies.APP_COMPAT)
     implementation(Dependencies.MATERIAL)
     implementation(Dependencies.VIEW_BINDING_DELEGATE)
+    implementation(Dependencies.Barcode.BARCODE_GENERATOR)
 }

@@ -1,5 +1,5 @@
 plugins {
-    id(Plugins.ANDROID_APPLICATION)
+    id(Plugins.ANDROID_LIBRARY)
     id(Plugins.KOTLIN_ANDROID)
 }
 
@@ -12,16 +12,14 @@ dependencies {
     implementation(Dependencies.APP_COMPAT)
     implementation(Dependencies.MATERIAL)
     implementation(Dependencies.VIEW_BINDING_DELEGATE)
-    implementation(project(Modules.LOGIN))
-    implementation(project(Modules.NETWORK))
-    implementation(project(Modules.TOKEN))
-    implementation(project(Modules.REGISTRATION))
-    implementation(Dependencies.Navigation.NAVIGATION_FRAGMENT)
     implementation(Dependencies.Navigation.NAVIGATION_UI)
-    implementation(project(Modules.BASE))
-    implementation(project(Modules.CARDS))
-    implementation(project(Modules.PROFILE))
+    implementation(Dependencies.Navigation.NAVIGATION_FRAGMENT)
+    implementation(Dependencies.Barcode.BARCODE_GENERATOR)
+    implementation(Dependencies.NETWORK.RETROFIT)
+    implementation(Dependencies.Gson.GSON)
+
+    implementation(project(Modules.DESIGN))
     implementation(project(Modules.DATABASE))
-    implementation(project(Modules.ADD_CARD))
-    implementation(project(Modules.CARD_DETAIL))
+    implementation(project(Modules.BASE))
+    implementation(project(Modules.NETWORK))
 }
