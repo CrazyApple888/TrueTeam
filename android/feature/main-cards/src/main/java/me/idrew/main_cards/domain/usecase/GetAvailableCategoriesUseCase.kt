@@ -1,4 +1,4 @@
-package me.idrew.main_cards.domain
+package me.idrew.main_cards.domain.usecase
 
 import ru.nsu.alphacontest.model.CardCategory
 

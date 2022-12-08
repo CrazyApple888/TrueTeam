@@ -1,18 +1,18 @@
 package me.idrew.main_cards.di
 
 import android.location.LocationManager
-import me.idrew.main_cards.CardsViewModel
+import me.idrew.main_cards.presentation.viewmodel.CardsViewModel
 import me.idrew.main_cards.data.CardsCommand
 import me.idrew.main_cards.data.CardsService
-import me.idrew.main_cards.data.CardsWebMapper
+import me.idrew.main_cards.data.mapper.CardsWebMapper
 import me.idrew.main_cards.data.LocationServiceImpl
 import me.idrew.main_cards.data.PermissionCheckerImpl
-import me.idrew.main_cards.domain.GetAvailableCategoriesUseCase
-import me.idrew.main_cards.domain.GetOrderedCardsUseCase
-import me.idrew.main_cards.domain.LocationService
-import me.idrew.main_cards.domain.PermissionChecker
-import me.idrew.main_cards.presentation.CardsListItemMapper
-import me.idrew.main_cards.presentation.CategoryMapper
+import me.idrew.main_cards.domain.usecase.GetAvailableCategoriesUseCase
+import me.idrew.main_cards.domain.usecase.GetOrderedCardsUseCase
+import me.idrew.main_cards.domain.location.LocationService
+import me.idrew.main_cards.domain.location.PermissionChecker
+import me.idrew.main_cards.presentation.mapper.CardsListItemMapper
+import me.idrew.main_cards.presentation.mapper.CategoryMapper
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

@@ -2,8 +2,8 @@ package me.idrew.main_cards.data
 
 import android.annotation.SuppressLint
 import android.location.LocationManager
-import me.idrew.main_cards.domain.LocationService
-import me.idrew.main_cards.domain.LonLat
+import me.idrew.main_cards.domain.location.LocationService
+import me.idrew.main_cards.domain.model.LonLat
 
 class LocationServiceImpl(
     private val locationManager: LocationManager

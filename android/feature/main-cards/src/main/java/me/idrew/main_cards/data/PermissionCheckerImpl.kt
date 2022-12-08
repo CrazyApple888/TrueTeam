@@ -4,7 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import androidx.core.content.ContextCompat
-import me.idrew.main_cards.domain.PermissionChecker
+import me.idrew.main_cards.domain.location.PermissionChecker
 
 class PermissionCheckerImpl(
     private val context: Context

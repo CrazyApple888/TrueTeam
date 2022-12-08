@@ -1,5 +1,6 @@
-package me.idrew.main_cards.presentation
+package me.idrew.main_cards.presentation.mapper
 
+import me.idrew.main_cards.presentation.model.ChipCategory
 import ru.nsu.alphacontest.model.CardCategory
 
 class CategoryMapper {

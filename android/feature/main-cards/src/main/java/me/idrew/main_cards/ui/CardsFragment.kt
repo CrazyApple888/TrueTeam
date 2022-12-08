@@ -1,4 +1,4 @@
-package me.idrew.main_cards
+package me.idrew.main_cards.ui
 
 import android.Manifest
 import android.content.Context
@@ -15,8 +15,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.chip.Chip
-import me.idrew.main_cards.presentation.CardsScreenUIState
-import me.idrew.main_cards.presentation.UIState
+import me.idrew.main_cards.presentation.viewmodel.CardsViewModel
+import me.idrew.main_cards.presentation.model.CardsScreenUIState
+import me.idrew.main_cards.presentation.model.UIState
 import me.idrew.main_cards.presentation.adapter.CardsAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.nsu.alphacontest.main_cards.R

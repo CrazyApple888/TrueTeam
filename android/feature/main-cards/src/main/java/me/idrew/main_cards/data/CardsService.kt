@@ -1,5 +1,6 @@
 package me.idrew.main_cards.data
 
+import me.idrew.main_cards.data.model.OrderedCardsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -1,4 +1,4 @@
-package me.idrew.main_cards.data
+package me.idrew.main_cards.data.model
 
 import com.google.gson.annotations.SerializedName
 

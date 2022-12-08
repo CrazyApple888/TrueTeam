@@ -1,4 +1,4 @@
-package me.idrew.main_cards
+package me.idrew.main_cards.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -7,15 +7,15 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import me.idrew.main_cards.domain.GetAvailableCategoriesUseCase
-import me.idrew.main_cards.domain.GetOrderedCardsUseCase
-import me.idrew.main_cards.domain.LocationService
-import me.idrew.main_cards.domain.LonLat
-import me.idrew.main_cards.domain.PermissionChecker
-import me.idrew.main_cards.presentation.CardsListItemMapper
-import me.idrew.main_cards.presentation.CardsScreenUIState
-import me.idrew.main_cards.presentation.CategoryMapper
-import me.idrew.main_cards.presentation.UIState
+import me.idrew.main_cards.domain.usecase.GetAvailableCategoriesUseCase
+import me.idrew.main_cards.domain.usecase.GetOrderedCardsUseCase
+import me.idrew.main_cards.domain.location.LocationService
+import me.idrew.main_cards.domain.model.LonLat
+import me.idrew.main_cards.domain.location.PermissionChecker
+import me.idrew.main_cards.presentation.mapper.CardsListItemMapper
+import me.idrew.main_cards.presentation.model.CardsScreenUIState
+import me.idrew.main_cards.presentation.mapper.CategoryMapper
+import me.idrew.main_cards.presentation.model.UIState
 import ru.nsu.alphacontest.SingleLiveEvent
 import ru.nsu.alphacontest.model.CardCategory
 

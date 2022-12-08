@@ -1,4 +1,4 @@
-package me.idrew.main_cards.presentation
+package me.idrew.main_cards.presentation.model
 
 import me.idrew.main_cards.presentation.adapter.CardListItem
 

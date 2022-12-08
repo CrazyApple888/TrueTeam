@@ -1,4 +1,6 @@
-package me.idrew.main_cards.domain
+package me.idrew.main_cards.domain.location
+
+import me.idrew.main_cards.domain.model.LonLat
 
 interface LocationService {
 

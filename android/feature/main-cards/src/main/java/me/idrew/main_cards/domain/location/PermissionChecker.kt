@@ -1,4 +1,4 @@
-package me.idrew.main_cards.domain
+package me.idrew.main_cards.domain.location
 
 interface PermissionChecker {
 

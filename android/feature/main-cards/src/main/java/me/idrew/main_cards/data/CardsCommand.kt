@@ -1,5 +1,6 @@
 package me.idrew.main_cards.data
 
+import me.idrew.main_cards.data.mapper.CardsWebMapper
 import ru.nsu.alphacontest.database.domain.CardRepository
 import ru.nsu.alphacontest.model.Card
 import ru.nsu.alphacontest.model.CardCategory

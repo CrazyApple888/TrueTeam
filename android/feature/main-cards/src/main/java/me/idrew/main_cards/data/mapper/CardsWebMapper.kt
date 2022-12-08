@@ -1,5 +1,6 @@
-package me.idrew.main_cards.data
+package me.idrew.main_cards.data.mapper
 
+import me.idrew.main_cards.data.model.CardResponse
 import ru.nsu.alphacontest.model.Barcode
 import ru.nsu.alphacontest.model.BarcodeType
 import ru.nsu.alphacontest.model.Card
