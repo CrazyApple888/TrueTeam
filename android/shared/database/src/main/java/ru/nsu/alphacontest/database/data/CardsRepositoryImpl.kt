@@ -12,9 +12,12 @@ class CardsRepositoryImpl(
     private val cardMapper: CardMapper,
 ) : CardRepository {
 
-    override suspend fun saveCards(cards: List<Card>) = withContext(Dispatchers.IO) {
+    override suspend fun updateCache(cards: List<Card>) = withContext(Dispatchers.IO) {
         cards.map(cardMapper::mapToDb)
-            .let { cardsDao.saveAll(it) }
+            .let {
+                cardsDao.deleteAll()
+                cardsDao.saveAll(it)
+            }
     }
 
     override suspend fun getAll(): List<Card> = withContext(Dispatchers.IO) {

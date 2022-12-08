@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "cards", indices = [Index(value = ["barcodeType", "barcodeNumber"], unique = true)])
+@Entity(tableName = "cards")
 data class CardModel(
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "category") val category: String,

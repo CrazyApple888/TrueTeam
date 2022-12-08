@@ -13,12 +13,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.chip.Chip
-import me.idrew.main_cards.presentation.viewmodel.CardsViewModel
-import me.idrew.main_cards.presentation.model.CardsScreenUIState
-import me.idrew.main_cards.presentation.model.UIState
 import me.idrew.main_cards.presentation.adapter.CardsAdapter
+import me.idrew.main_cards.presentation.model.CardsScreenUIState
+import me.idrew.main_cards.presentation.model.ErrorType
+import me.idrew.main_cards.presentation.model.UIState
+import me.idrew.main_cards.presentation.viewmodel.CardsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.nsu.alphacontest.main_cards.R
 import ru.nsu.alphacontest.main_cards.databinding.FragmentCardsBinding
@@ -35,16 +37,23 @@ class CardsFragment: Fragment(R.layout.fragment_cards) {
 
     private var requestLocationLauncher: ActivityResultLauncher<Array<String>>? = null
 
+    private var requestCameraLauncher: ActivityResultLauncher<String>? = null
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         requestLocationLauncher = registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions(),
-            viewModel::onPermissionResult
+            viewModel::onLocationPermissionResult
+        )
+        requestCameraLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestPermission(),
+            viewModel::onCameraPermissionResult
         )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initChips()
         initAdapter()
         initObservers()
         initListeners()
@@ -54,6 +63,9 @@ class CardsFragment: Fragment(R.layout.fragment_cards) {
         binding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
             viewModel.onCategoryChosen(checkedId)
         }
+        binding.floatingButton.setOnClickListener {
+            viewModel.onAddCardClicked()
+        }
     }
 
     private fun initObservers() {
@@ -62,15 +74,13 @@ class CardsFragment: Fragment(R.layout.fragment_cards) {
                 when (it.state) {
                     is UIState.Content -> bindContentState(it)
                     is UIState.Error -> bindErrorState(it)
-                    is UIState.ChipInit -> initChips(it)
+                    is UIState.ChipInit -> initChips()
                     is UIState.Initial -> {}
                 }
             }
         }
 
-        viewModel.requestPermissionEvent.observe(viewLifecycleOwner) {
-            if (!it) return@observe
-
+        viewModel.requestLocationPermissionEvent.observe(viewLifecycleOwner) {
             requestLocationLauncher?.launch(
                 arrayOf(
                     Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -78,10 +88,19 @@ class CardsFragment: Fragment(R.layout.fragment_cards) {
                 )
             )
         }
+
+        viewModel.openAddCardEvent.observe(viewLifecycleOwner) {
+            findNavController().navigate(R.id.action_cardsFragment_to_add_card_nav_graph)
+        }
+
+        viewModel.requestCameraPermissionEvent.observe(viewLifecycleOwner) {
+            requestCameraLauncher?.launch(Manifest.permission.CAMERA)
+        }
     }
 
-    private fun initChips(uiState: CardsScreenUIState) {
-        uiState.availableCategories.forEach {
+    private fun initChips() {
+        binding.chipGroup.removeAllViews()
+        viewModel.uiState.value.availableCategories.forEach {
             binding.chipGroup.addView(
                 Chip(requireContext()).apply {
                     isCheckable = true
@@ -96,13 +115,11 @@ class CardsFragment: Fragment(R.layout.fragment_cards) {
         adapter.items = uiState.cards
     }
 
-    private fun showDialog() {
+    private fun showDialog(message: String) {
         val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         alertDialogBuilder.setTitle("Доступ к геолокации")
         alertDialogBuilder
-            .setMessage(
-                "Для корректной работы приложения требуется доступ к геолокации.\nПожалуйста, разрешите его на следующем экране."
-            )
+            .setMessage(message)
             .setPositiveButton("Хорошо") { _, _ ->
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                 val uri: Uri = Uri.fromParts("package", requireContext().packageName, null)
@@ -116,10 +133,27 @@ class CardsFragment: Fragment(R.layout.fragment_cards) {
 
     private fun bindErrorState(uiState: CardsScreenUIState) {
         binding.chipGroup.clearCheck()
-        if (!shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION)) {
-            showDialog()
+
+        when (uiState.errorType) {
+            is ErrorType.Camera -> bindLocationError(
+                "Нет доступа к камере",
+                "Для корректной работы приложения требуется доступ к камере.\nПожалуйста, предоставьте его на следующем экране.",
+                Manifest.permission.CAMERA
+            )
+            is ErrorType.Location -> bindLocationError(
+                "Нет доступа к локации",
+                "Для корректной работы приложения требуется доступ к геолокации.\nПожалуйста, предоставьте его на следующем экране.",
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+            null -> {}
+        }
+    }
+
+    private fun bindLocationError(toastMessage: String, message: String, permission: String) {
+        if (!shouldShowRequestPermissionRationale(permission)) {
+            showDialog(message)
         } else {
-            Toast.makeText(requireContext(), "Нет доступа к локации", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), toastMessage, Toast.LENGTH_SHORT).show()
         }
     }
 
