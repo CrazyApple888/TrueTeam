@@ -51,6 +51,7 @@ class BarcodeAnalyzer(
 }
 
 fun BarcodeType.toAnalyserType(): Int = when (this) {
+    is BarcodeType.NoBarcode -> Barcode.FORMAT_UNKNOWN
     is BarcodeType.Aztec -> Barcode.FORMAT_AZTEC
     is BarcodeType.Codabar -> Barcode.FORMAT_CODABAR
     is BarcodeType.Code128 -> Barcode.FORMAT_CODE_128
