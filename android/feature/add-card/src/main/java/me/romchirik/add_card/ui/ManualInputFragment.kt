@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
+import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import me.romchirik.add_card.R
 import me.romchirik.add_card.databinding.FragmentManualInputBinding
 import me.romchirik.add_card.domain.model.BarcodeScanResult
 import me.romchirik.add_card.presentation.ManualInputUiState
 import me.romchirik.add_card.presentation.ManualInputViewModel
+import me.romchirik.add_card.presentation.SuccessFragmentArgs
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.nsu.alphacontest.design.dialogs.InternalServerErrorDialog
 import ru.nsu.alphacontest.design.dialogs.LoadingDialog
@@ -71,7 +74,14 @@ class ManualInputFragment : Fragment(R.layout.fragment_manual_input) {
     }
 
     private fun onSubmitSuccess() {
-
+        findNavController().navigate(
+            R.id.action_manualInputFragment_to_successFragment, bundleOf(
+                SuccessFragment.ARGS_KEY to SuccessFragmentArgs(
+                    number = binding.numberEditText.text.toString(),
+                    name = binding.nameEditText.text.toString()
+                )
+            )
+        )
     }
 
     private fun obtainUiState(uiState: ManualInputUiState) = when (uiState) {

@@ -12,15 +12,15 @@ class AddCardRemoteDatasourceImpl(
 ) : AddCardDatasource {
 
     override suspend fun addCard(card: TrueCard) = with(card) {
-//        withContext(Dispatchers.IO) {
-//            service.addCard(
-//                AddCardRequest(
-//                    name = name,
-//                    category = category.localizedValue,
-//                    barcodeType = barcodeType.stringValue,
-//                    number = number
-//                )
-//            )
-//        }
+        withContext(Dispatchers.IO) {
+            service.addCard(
+                AddCardRequest(
+                    name = name,
+                    category = category.localizedValue,
+                    barcodeType = barcodeType.stringValue,
+                    number = number
+                )
+            )
+        }
     }
 }
