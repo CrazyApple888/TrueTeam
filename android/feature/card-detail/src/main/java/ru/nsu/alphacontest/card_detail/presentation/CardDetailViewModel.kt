@@ -49,9 +49,6 @@ class CardDetailViewModel(
 
     init {
         viewModelScope.launch {
-            _uiState.value = uiState.value.copy(
-                contentState = ContentState.Loading
-            )
             val card = cardRepository.getByNumber(cardNumber)
             var barcode: BarcodeFormat? = null
             var text: String? = null

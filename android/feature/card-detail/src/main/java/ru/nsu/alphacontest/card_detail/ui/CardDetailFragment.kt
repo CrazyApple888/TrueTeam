@@ -35,8 +35,6 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
         }
     )
 
-    private lateinit var loadingDialog: DialogFragment
-
     private lateinit var connectivityErrorFragment: DialogFragment
 
     private lateinit var internalServerErrorDialog: DialogFragment
@@ -44,7 +42,6 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loadingDialog = LoadingDialog()
         connectivityErrorFragment = NoConnectivityDialog()
         internalServerErrorDialog = InternalServerErrorDialog()
         setupListeners()
@@ -67,7 +64,6 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
 
         when (state.contentState) {
             is ContentState.Error -> {
-                loadingDialog.dismiss()
                 when (state.contentState.type) {
                     ErrorType.InternalServerError -> {
                         showInternalServerErrorDialog()
@@ -77,11 +73,7 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
                     }
                 }
             }
-            ContentState.Loading -> {
-                showLoadingDialog()
-            }
             ContentState.Content -> {
-                loadingDialog.dismiss()
                 with(binding) {
                     if(state.codeImage == null) {
                         numberEditText.setText(state.code)
@@ -98,11 +90,6 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
                 findNavController().popBackStack()
             }
         }
-    }
-
-    private fun showLoadingDialog() {
-        if (!loadingDialog.isVisible)
-            loadingDialog.show(childFragmentManager, "Loading dialog")
     }
 
     private fun showConnectivityErrorDialog() {
