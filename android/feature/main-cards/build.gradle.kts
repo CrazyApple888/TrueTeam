@@ -10,4 +10,5 @@ dependencies {
     implementation(Dependencies.Koin.KOIN_ANDROID)
     implementation(Dependencies.CORE)
     implementation(Dependencies.APP_COMPAT)
+    implementation(Dependencies.Navigation.NAVIGATION_FRAGMENT)
 }
