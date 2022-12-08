@@ -5,6 +5,7 @@ import me.idrew.main_cards.di.CardsModule
 import me.romchirik.add_card.di.AddCardModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext.startKoin
+import ru.nsu.alphacontest.card_detail.di.CardDetailModules
 import ru.nsu.alphacontest.database.data.di.DatabaseModule
 import ru.nsu.alphacontest.login.di.LoginModules
 import ru.nsu.alphacontest.network.di.NetworkModules
@@ -31,6 +32,8 @@ class AlphaApplication : Application() {
                     CardsModule,
                     DatabaseModule,
                     AddCardModules,
+                    DatabaseModule,
+                    CardDetailModules,
                 ).flatten()
             )
         }

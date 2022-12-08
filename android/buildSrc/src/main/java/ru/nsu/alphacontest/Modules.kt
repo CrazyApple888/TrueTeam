@@ -13,4 +13,5 @@ object Modules {
     const val UTILS = ":shared:utils"
     const val NAVIGATION = ":shared:navigation"
     const val DATABASE = ":shared:database"
+    const val CARD_DETAIL = ":feature:card-detail"
 }

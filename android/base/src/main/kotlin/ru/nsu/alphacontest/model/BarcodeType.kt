@@ -1,5 +1,7 @@
 package ru.nsu.alphacontest.model
 
+import com.google.zxing.BarcodeFormat
+
 sealed class BarcodeType(val stringValue: String) {
 
     class QrCode : BarcodeType("FORMAT_QR_CODE")
@@ -55,4 +57,21 @@ fun Int.toBarcodeType() = when (this) {
     2048 -> BarcodeType.Pdf417()
     4096 -> BarcodeType.Aztec()
     else -> throw IllegalStateException("unknown code type: $this")
+}
+
+fun BarcodeType.toGoogleBarcode() = when(this) {
+    is BarcodeType.Aztec -> BarcodeFormat.AZTEC
+    is BarcodeType.Codabar -> BarcodeFormat.CODABAR
+    is BarcodeType.Code128 -> BarcodeFormat.CODE_128
+    is BarcodeType.Code39 -> BarcodeFormat.CODE_39
+    is BarcodeType.Code93 -> BarcodeFormat.CODE_93
+    is BarcodeType.DataMatrix -> BarcodeFormat.DATA_MATRIX
+    is BarcodeType.Ean13 -> BarcodeFormat.EAN_13
+    is BarcodeType.Ean8 -> BarcodeFormat.EAN_8
+    is BarcodeType.Itf -> BarcodeFormat.ITF
+    is BarcodeType.Pdf417 -> BarcodeFormat.PDF_417
+    is BarcodeType.QrCode -> BarcodeFormat.QR_CODE
+    is BarcodeType.UpcA -> BarcodeFormat.UPC_A
+    is BarcodeType.UpcE -> BarcodeFormat.UPC_E
+    is BarcodeType.NoBarcode -> throw IllegalArgumentException()
 }

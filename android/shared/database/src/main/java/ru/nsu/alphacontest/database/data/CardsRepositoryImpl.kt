@@ -12,9 +12,12 @@ class CardsRepositoryImpl(
     private val cardMapper: CardMapper,
 ) : CardRepository {
 
-    override suspend fun saveCards(cards: List<Card>) = withContext(Dispatchers.IO) {
+    override suspend fun updateCache(cards: List<Card>) = withContext(Dispatchers.IO) {
         cards.map(cardMapper::mapToDb)
-            .let { cardsDao.saveAll(it) }
+            .let {
+                cardsDao.deleteAll()
+                cardsDao.saveAll(it)
+            }
     }
 
     override suspend fun getAll(): List<Card> = withContext(Dispatchers.IO) {
@@ -22,7 +25,12 @@ class CardsRepositoryImpl(
     }
 
     override suspend fun delete(cards: List<Card>) = withContext(Dispatchers.IO) {
-        cards.map(cardMapper::mapToDb)
-            .forEach { cardsDao.deleteCard(it) }
+        cards.map(cardMapper::mapToDb).forEach { cardsDao.deleteCard(it) }
+    }
+
+    override suspend fun getByNumber(number: String) = withContext(Dispatchers.IO) {
+        cardsDao.getAll().filter {
+                it.barcodeNumber == number
+            }.map(cardMapper::mapFromDb).first()
     }
 }

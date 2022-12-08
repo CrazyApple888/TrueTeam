@@ -23,4 +23,5 @@ dependencies {
     implementation(project(Modules.PROFILE))
     implementation(project(Modules.DATABASE))
     implementation(project(Modules.ADD_CARD))
+    implementation(project(Modules.CARD_DETAIL))
 }

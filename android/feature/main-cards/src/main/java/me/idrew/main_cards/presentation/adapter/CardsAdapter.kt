@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.nsu.alphacontest.main_cards.databinding.ItemCardLayoutBinding
 
-class CardsAdapter : RecyclerView.Adapter<CardViewHolder>() {
+class CardsAdapter(
+    private val onCardClickListener: (CardListItem) -> Unit,
+) : RecyclerView.Adapter<CardViewHolder>() {
 
     var items: List<CardListItem> = emptyList()
         set(value) {
@@ -21,7 +23,7 @@ class CardsAdapter : RecyclerView.Adapter<CardViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) =
-        holder.bind(items[position])
+        holder.bind(items[position], onCardClickListener)
 
     override fun getItemCount(): Int = items.size
 }

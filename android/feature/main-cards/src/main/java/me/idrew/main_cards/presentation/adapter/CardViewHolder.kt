@@ -7,8 +7,11 @@ class CardViewHolder(
     private val binding: ItemCardLayoutBinding,
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: CardListItem) {
+    fun bind(item: CardListItem, onCardClickListener: (CardListItem) -> Unit) {
         binding.title.text = item.title
         binding.description.text = item.number
+        binding.root.setOnClickListener {
+            onCardClickListener(item)
+        }
     }
 }

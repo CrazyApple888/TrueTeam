@@ -2,5 +2,7 @@ package me.idrew.main_cards.domain.location
 
 interface PermissionChecker {
 
-    fun isPermissionLocationGranted(): Boolean
+    fun isLocationPermissionGranted(): Boolean
+
+    fun isCameraPermissionGranted(): Boolean
 }

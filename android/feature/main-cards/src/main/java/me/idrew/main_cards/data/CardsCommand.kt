@@ -24,7 +24,7 @@ class CardsCommand(
             addAll(response.nearestCards.map(cardsWebMapper::mapToDomain))
             addAll(response.anotherCards.map(cardsWebMapper::mapToDomain))
         }.also {
-            cardsRepository.saveCards(it)
+            cardsRepository.updateCache(it)
         }
 
         return resultCards
