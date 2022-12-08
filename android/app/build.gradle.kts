@@ -15,9 +15,9 @@ dependencies {
     implementation(project(Modules.LOGIN))
     implementation(project(Modules.NETWORK))
     implementation(project(Modules.TOKEN))
+    implementation(project(Modules.REGISTRATION))
     implementation(Dependencies.Navigation.NAVIGATION_FRAGMENT)
     implementation(Dependencies.Navigation.NAVIGATION_UI)
-
     implementation(project(Modules.BASE))
     implementation(project(Modules.CARDS))
     implementation(project(Modules.BARCODE_CAMERA))

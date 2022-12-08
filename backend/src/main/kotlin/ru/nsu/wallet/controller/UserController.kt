@@ -33,7 +33,7 @@ class UserController(
         return ResponseEntity.ok(userDto)
     }
 
-    @PostMapping
+    @PostMapping("/register")
     @ApiResponse(description = "Создать нового пользователя.")
     fun register(@RequestBody @Valid registrationRequest: RegistrationRequest): ResponseEntity<JwtPair> {
         val jwtPair = userService.registerUser(registrationRequest)

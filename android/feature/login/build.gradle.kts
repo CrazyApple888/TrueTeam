@@ -15,6 +15,9 @@ dependencies {
     implementation(project(Modules.DESIGN))
     implementation(project(Modules.NETWORK))
     implementation(project(Modules.TOKEN))
+    implementation(project(Modules.REGISTRATION))
+    implementation(project(Modules.CARDS))
     implementation(Dependencies.NETWORK.RETROFIT)
     implementation(Dependencies.Gson.GSON)
+    implementation(Dependencies.Navigation.NAVIGATION_FRAGMENT)
 }

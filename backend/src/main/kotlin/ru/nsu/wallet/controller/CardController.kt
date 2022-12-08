@@ -27,12 +27,12 @@ class CardController(
 
     @GetMapping("/ordered-list")
     @ApiResponse(description = "Получить приоритезированный список скидочных карт. Требуется авторизация.")
-    fun getCardListByType(
-        @RequestParam type: String,
+    fun getCardListByCategory(
+        @RequestParam category: String,
         @RequestParam lon: Double,
         @RequestParam lat: Double
     ): ResponseEntity<OrderedCardsResponse> {
-        val orderedCards = cardService.getCardListOrderedByType(lon, lat, type, getUserIdFromSecurityContext())
+        val orderedCards = cardService.getCardListOrderedByCategory(lon, lat, category, getUserIdFromSecurityContext())
         val result = OrderedCardsResponse(
             nearestCards = orderedCards.nearestCards.stream().map { card -> cardMapper.mapEntityToDto(card) }.toList(),
             anotherCards = orderedCards.anotherCards.stream().map { card -> cardMapper.mapEntityToDto(card) }.toList()

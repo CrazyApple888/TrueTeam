@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/splashFragment"
         android:name="ru.nsu.alphacontest.ui.SplashFragment"
-        android:label="SplashFragment" >
-        <action
-            android:id="@+id/action_splashFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_sphash">
         <action
             android:id="@+id/action_splashFragment_to_cardsFragment"
-            app:destination="@id/cardsFragment" />
+            app:destination="@id/cardsFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_auth_nav_graph"
+            app:destination="@id/auth_nav_graph"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="ru.nsu.alphacontest.login.ui.LoginFragment"
-        android:label="LoginFragment" />
     <fragment
         android:id="@+id/cardsFragment"
         android:name="me.idrew.main_cards.CardsFragment"
+        tools:layout="@layout/fragment_cards"
         android:label="CardsFragment" />
+    <include app:graph="@navigation/auth_nav_graph" />
 </navigation>

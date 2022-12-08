@@ -11,6 +11,7 @@ class CardMapper {
         id = card.id,
         number = card.number,
         name = card.name,
-        type = card.type
+        category = card.category,
+        barcodeType = card.barcodeType
     )
 }

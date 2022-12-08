@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="registration_title_text">Создайте\nаккаунт</string>
+    <string name="name_field_hint">Имя</string>
+    <string name="mail_field_hint">Почта</string>
+    <string name="password_field_hint">Пароль</string>
+    <string name="repeat_password_field_hint">Повторите пароль</string>
+    <string name="register_button_text">Зарегистрироваться</string>
+</resources>

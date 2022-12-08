@@ -8,4 +8,6 @@ object Modules {
     const val TOKEN = ":shared:token"
     const val CARDS = ":feature:main-cards"
     const val BARCODE_CAMERA = ":feature:barcode-camera"
+    const val REGISTRATION = ":feature:registration"
+    const val UTILS = ":shared:utils"
 }

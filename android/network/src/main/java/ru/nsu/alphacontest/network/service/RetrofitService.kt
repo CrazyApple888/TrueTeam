@@ -4,8 +4,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
-const val BASE_URL = "http://10.0.2.2:8080/"
+import ru.nsu.alphacontest.network.BuildConfig
 
 fun networkService(interceptors: List<Interceptor>): Retrofit {
     val httpClient = OkHttpClient().newBuilder().apply {
@@ -13,7 +12,7 @@ fun networkService(interceptors: List<Interceptor>): Retrofit {
     }.build()
 
     return Retrofit.Builder()
-        .baseUrl(BASE_URL)
+        .baseUrl(BuildConfig.API_ENDPOINT)
         .addConverterFactory(GsonConverterFactory.create())
         .client(httpClient)
         .build()
