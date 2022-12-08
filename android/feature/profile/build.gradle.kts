@@ -10,14 +10,13 @@ dependencies {
     implementation(Dependencies.Koin.KOIN_ANDROID)
     implementation(Dependencies.CORE)
     implementation(Dependencies.APP_COMPAT)
-    implementation(Dependencies.Navigation.NAVIGATION_FRAGMENT)
     implementation(Dependencies.MATERIAL)
-    implementation(Dependencies.Recycler.RECYCLER_VIEW)
     implementation(Dependencies.VIEW_BINDING_DELEGATE)
     implementation(Dependencies.NETWORK.RETROFIT)
     implementation(Dependencies.Gson.GSON)
+    implementation(Dependencies.Navigation.NAVIGATION_FRAGMENT)
 
     implementation(project(Modules.DESIGN))
-    implementation(project(Modules.BASE))
-    implementation(project(Modules.DATABASE))
+    implementation(project(Modules.NETWORK))
+    implementation(project(Modules.TOKEN))
 }

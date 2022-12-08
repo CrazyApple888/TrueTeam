@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_header_text">Профиль</string>
+    <string name="name_field_hint">Имя</string>
+    <string name="email_field_text">Почта</string>
+</resources>

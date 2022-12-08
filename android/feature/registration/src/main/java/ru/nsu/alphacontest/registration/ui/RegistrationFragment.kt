@@ -2,10 +2,13 @@ package ru.nsu.alphacontest.registration.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.net.toUri
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -129,8 +132,12 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
             }
             ContentState.Success -> {
                 loadingDialog.dismissIfVisible()
+                val request = NavDeepLinkRequest.Builder
+                    .fromUri("alfa-cards://main_cards_fragment".toUri())
+                    .build()
                 findNavController().navigate(
-                    R.id.action_registrationFragment_to_cardsFragment
+                    request = request,
+                    navOptions = NavOptions.Builder().setPopUpTo(R.id.registrationFragment, true).build()
                 )
             }
         }
