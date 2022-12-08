@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="ru.nsu.alphacontest.main_cards">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ru.nsu.alphacontest.main_cards">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 </manifest>
