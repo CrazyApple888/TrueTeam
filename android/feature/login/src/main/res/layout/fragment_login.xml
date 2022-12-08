@@ -3,34 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:paddingBottom="48dp">
+        android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/TextAppearance.AppCompat.Body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="94dp"
+            android:layout_marginLeft="16dp"
             android:text="@string/login_screen_title"
             android:textSize="32sp"
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/email_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="94dp"
             android:hint="@string/login_field_hint"
-            app:boxStrokeErrorColor="@color/accent"
             app:counterEnabled="true"
             app:counterMaxLength="128"
             app:errorEnabled="true"
@@ -45,18 +42,13 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="20dp"
             android:hint="@string/password_field_hint"
-            app:boxStrokeErrorColor="@color/accent"
+            android:layout_marginHorizontal="16dp"
             app:counterEnabled="true"
-            app:counterMaxLength="128"
-            app:endIconMode="password_toggle"
-            app:errorEnabled="true"
-            app:errorIconDrawable="@null">
+            app:counterMaxLength="64"
+            app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password_edit_text"
@@ -68,23 +60,23 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/login_button"
-            style="@style/AlfaButton.Elevated"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
-            android:text="@string/login_button_text"
-            android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+            android:layout_marginHorizontal="64dp"
+            android:text="@string/login_button_text"/>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/registration_button"
             style="@style/AlfaButton.Text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:text="@string/register_button_text"
-            android:textAppearance="@style/TextAppearance.AppCompat.Button" />
-
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginHorizontal="64dp"
+            android:text="@string/register_button_text"/>
 
     </LinearLayout>
 </ScrollView>

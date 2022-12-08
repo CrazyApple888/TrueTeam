@@ -19,7 +19,7 @@ class LoginRepositoryImpl(
             tokenDataSource.saveRefreshToken(result.refreshToken)
         } catch (e: Throwable) {
             if(e is HttpException && e.code() == 400) {
-                throw Exception("Неверный логин или пароль")
+                throw IllegalArgumentException("Неверный логин или пароль")
             } else {
                 throw e
             }
