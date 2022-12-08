@@ -14,6 +14,8 @@ object Dependencies {
         const val COROUTINES = "1.6.0"
         const val RETROFIT = "2.9.0"
         const val LOGGING_INTERCEPTOR = "4.9.3"
+        const val CAMERA_X = "1.1.0"
+        const val BARCODE_SCANNER = "17.0.3"
     }
 
     const val GRADLE = "com.android.tools.build:gradle:${Versions.GRADLE}"
@@ -60,14 +62,30 @@ object Dependencies {
     }
 
     object Navigation {
-        const val NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}"
+        const val NAVIGATION_FRAGMENT =
+            "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}"
         const val NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"
     }
 
-    const val VIEW_BINDING_DELEGATE = "com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.6"
+    const val VIEW_BINDING_DELEGATE =
+        "com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.6"
 
     object NETWORK {
         const val RETROFIT = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
-        const val LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${Versions.LOGGING_INTERCEPTOR}"
+        const val LOGGING_INTERCEPTOR =
+            "com.squareup.okhttp3:logging-interceptor:${Versions.LOGGING_INTERCEPTOR}"
     }
+
+    object Camera {
+        const val CAMERA_X_CORE = "androidx.camera:camera-core:${Versions.CAMERA_X}"
+        const val CAMERA_X_LIFECYCLE = "androidx.camera:camera-lifecycle:${Versions.CAMERA_X}"
+        const val CAMERA_X_EXT = "androidx.camera:camera-extensions:${Versions.CAMERA_X}"
+        const val CAMERA_X_VIEW = "androidx.camera:camera-view:${Versions.CAMERA_X}"
+    }
+
+    object Barcode {
+        const val BARCODE_SCANNER = "com.google.mlkit:barcode-scanning:${Versions.BARCODE_SCANNER}"
+    }
+
+
 }

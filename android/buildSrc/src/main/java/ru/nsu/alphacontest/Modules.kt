@@ -7,4 +7,5 @@ object Modules {
     const val NETWORK = ":network"
     const val TOKEN = ":shared:token"
     const val CARDS = ":feature:main-cards"
+    const val BARCODE_CAMERA = ":feature:barcode-camera"
 }

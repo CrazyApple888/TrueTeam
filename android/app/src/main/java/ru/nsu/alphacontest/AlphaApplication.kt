@@ -1,6 +1,7 @@
 package ru.nsu.alphacontest
 
 import android.app.Application
+import me.romchirik.barcode_camera.di.BarcodeCameraModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext.startKoin
 import ru.nsu.alphacontest.login.di.LoginModules
@@ -20,6 +21,7 @@ class AlphaApplication : Application() {
                     LoginModules,
                     NetworkModules,
                     TokenModules,
+                    BarcodeCameraModules,
                 ).flatten()
             )
         }

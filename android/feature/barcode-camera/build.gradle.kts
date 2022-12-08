@@ -1,5 +1,5 @@
 plugins {
-    id(Plugins.ANDROID_APPLICATION)
+    id(Plugins.ANDROID_LIBRARY)
     id(Plugins.KOTLIN_ANDROID)
 }
 
@@ -12,13 +12,14 @@ dependencies {
     implementation(Dependencies.APP_COMPAT)
     implementation(Dependencies.MATERIAL)
     implementation(Dependencies.VIEW_BINDING_DELEGATE)
-    implementation(project(Modules.LOGIN))
-    implementation(project(Modules.NETWORK))
-    implementation(project(Modules.TOKEN))
-    implementation(Dependencies.Navigation.NAVIGATION_FRAGMENT)
-    implementation(Dependencies.Navigation.NAVIGATION_UI)
-
+    implementation(project(Modules.DESIGN))
     implementation(project(Modules.BASE))
-    implementation(project(Modules.CARDS))
-    implementation(project(Modules.BARCODE_CAMERA))
+    implementation(Dependencies.Camera.CAMERA_X_CORE)
+    implementation(Dependencies.Navigation.NAVIGATION_UI)
+    implementation(Dependencies.Navigation.NAVIGATION_FRAGMENT)
+    implementation(Dependencies.Camera.CAMERA_X_VIEW)
+    implementation(Dependencies.Camera.CAMERA_X_LIFECYCLE)
+    implementation(Dependencies.Camera.CAMERA_X_EXT)
+    implementation(Dependencies.Barcode.BARCODE_SCANNER)
+
 }
