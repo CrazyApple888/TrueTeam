@@ -46,6 +46,9 @@ class CardsRepositoryImpl(
         cardsDao.saveCard(cardMapper.mapToDb(card))
     }
 
+    override suspend fun isEmpty(): Boolean =
+        cardsDao.getCountOfCards() != 0L
+
     override fun observeCards(): Flow<List<Card>> =
         cardsDao.observeCards().map {
             it.map(cardMapper::mapFromDb)

@@ -21,7 +21,7 @@ import retrofit2.Retrofit
 
 private val presentationModule = module {
     viewModel { CardsViewModel(get(), get(), get(), get(), get(), get(), get()) }
-    factory { ObserveCardsUseCase(get()) }
+    factory { ObserveCardsUseCase(get(), get(), get()) }
     factory { CategoryMapper() }
     factory { GetAvailableCategoriesUseCase() }
     factory { GetOrderedCardsUseCase(get()) }

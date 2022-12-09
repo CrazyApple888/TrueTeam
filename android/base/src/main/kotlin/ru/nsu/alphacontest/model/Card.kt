@@ -19,24 +19,20 @@ sealed interface CardCategory {
     companion object {
 
         fun forName(name: String): CardCategory = when (name) {
+            "Кафе",
             "cafe" -> Cafe
+            "Ресторан",
             "restaurant" -> Restaurant
+            "Аптека",
             "pharmacy" -> Pharmacy
+            "Супермаркет",
             "grocery" -> Grocery
+            "Оптика",
             "optics" -> Optics
+            "Одежда",
             "clothing" -> Clothing
+            "Заправочная станция",
             "fueling_station" -> FuelingStation
-            else -> Company
-        }
-
-        fun forLocalizedName(name: String): CardCategory = when (name) {
-            "Кафе" -> Cafe
-            "Ресторан" -> Restaurant
-            "Аптека" -> Pharmacy
-            "Супермаркет" -> Grocery
-            "Оптика" -> Optics
-            "Одежда" -> Clothing
-            "Заправочная станция" -> FuelingStation
             else -> Company
         }
     }

@@ -1,7 +1,6 @@
 package ru.nsu.alphacontest.database.data.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -28,4 +27,7 @@ interface CardDao {
 
     @Query("SELECT * FROM cards")
     fun observeCards(): Flow<List<CardModel>>
+
+    @Query("SELECT COUNT(*) FROM cards")
+    fun getCountOfCards(): Long
 }
