@@ -41,9 +41,6 @@ class ProfileViewModel(
 
     init {
         viewModelScope.launch(exceptionHandler) {
-            _uiState.value = _uiState.value.copy(
-                contentState = ContentState.Loading
-            )
             val user = getProfileUseCase.getUser()
             _uiState.value = _uiState.value.copy(
                 name = user.firstName,

@@ -3,12 +3,11 @@ package ru.nsu.alphacontest.profile.presentation
 data class ProfileUiState(
     val name: String = "",
     val email: String = "",
-    val contentState: ContentState = ContentState.Loading,
+    val contentState: ContentState = ContentState.Content,
 )
 
 sealed interface ContentState {
     object Content: ContentState
-    object Loading: ContentState
     data class Error(
         val type: ErrorType,
     ): ContentState
