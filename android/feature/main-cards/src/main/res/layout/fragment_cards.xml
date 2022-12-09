@@ -18,14 +18,17 @@
             android:backgroundTint="#00FFFFFF" />
 
         <HorizontalScrollView
-            android:paddingHorizontal="4dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="4dp"
+            android:scrollbars="none">
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chip_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
                 app:singleSelection="true" />
 
         </HorizontalScrollView>
