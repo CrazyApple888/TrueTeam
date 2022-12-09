@@ -118,6 +118,7 @@ class CardsFragment: Fragment(R.layout.fragment_cards) {
         }
 
         viewModel.connectionErrorEvent.observe(viewLifecycleOwner) {
+            binding.chipGroup.clearCheck()
             connectionErrorDialog.apply {
                 message = it
             }.show(childFragmentManager, "connection dialog")
