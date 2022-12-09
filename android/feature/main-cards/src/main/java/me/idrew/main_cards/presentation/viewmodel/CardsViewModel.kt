@@ -73,19 +73,16 @@ class CardsViewModel(
         _uiState.value = _uiState.value.copy(
             availableCategories = categories.map {
                 categoryMapper.mapToUi(
-                    it,
-                    it == uiState.value.selectedCategory?.category
+                    it, it == uiState.value.selectedCategory?.category
                 )
-            },
-            state = UIState.ChipInit()
+            }, state = UIState.ChipInit()
         )
 
         viewModelScope.launch {
             observeCardsUseCase(lastKnownLocation).collect { cards ->
                 _uiState.update {
                     it.copy(
-                        cards = cards.map(listItemMapper::mapToItem),
-                        state = UIState.Content()
+                        cards = cards.map(listItemMapper::mapToItem), state = UIState.Content()
                     )
                 }
             }
@@ -108,8 +105,7 @@ class CardsViewModel(
         } else {
             _uiState.update {
                 it.copy(
-                    state = UIState.Error(),
-                    errorType = ErrorType.Location()
+                    state = UIState.Error(), errorType = ErrorType.Location()
                 )
             }
         }
@@ -128,16 +124,14 @@ class CardsViewModel(
         if (isGranted) {
             _uiState.update {
                 it.copy(
-                    state = UIState.Content(),
-                    errorType = null
+                    state = UIState.Content(), errorType = null
                 )
             }
             _openAddCardEvent.call()
         } else {
             _uiState.update {
                 it.copy(
-                    state = UIState.Error(),
-                    errorType = ErrorType.Camera()
+                    state = UIState.Error(), errorType = ErrorType.Camera()
                 )
             }
         }
@@ -146,8 +140,7 @@ class CardsViewModel(
     fun onDialogDismissed() {
         _uiState.update {
             it.copy(
-                state = UIState.Content(),
-                errorType = null
+                state = UIState.Content(), errorType = null
             )
         }
     }
@@ -166,6 +159,16 @@ class CardsViewModel(
                 category = selectedCardCategory?.category ?: categories.first(),
                 lon = lastKnownLocation?.lon ?: "0",
                 lat = lastKnownLocation?.lat ?: "0"
+            )
+        }
+    }
+
+    fun refreshCards() {
+        viewModelScope.launch(exceptionHandler) {
+            getOrderedCardsUseCase.invoke(
+                selectedCardCategory?.category ?: CardCategory.Grocery,
+                lastKnownLocation?.lon ?: "0",
+                lastKnownLocation?.lat ?: "0"
             )
         }
     }

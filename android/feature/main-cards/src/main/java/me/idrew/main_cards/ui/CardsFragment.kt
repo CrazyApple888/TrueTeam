@@ -125,6 +125,10 @@ class CardsFragment: Fragment(R.layout.fragment_cards) {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshCards()
+    }
     private fun initChips() {
         binding.chipGroup.removeAllViews()
         viewModel.uiState.value.availableCategories.forEach {

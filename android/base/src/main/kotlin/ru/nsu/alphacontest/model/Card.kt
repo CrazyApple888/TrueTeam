@@ -84,4 +84,10 @@ sealed interface CardCategory {
         override val stringValue: String = "company"
         override val localizedValue: String = "Компания"
     }
+
+    object BookStore : CardCategory {
+
+        override val stringValue: String = "book_store"
+        override val localizedValue: String = "Книжный магазин"
+    }
 }

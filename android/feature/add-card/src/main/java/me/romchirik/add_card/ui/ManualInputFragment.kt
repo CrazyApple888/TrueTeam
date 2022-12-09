@@ -44,6 +44,8 @@ class ManualInputFragment : Fragment(R.layout.fragment_manual_input) {
             CardCategory.Grocery,
             CardCategory.Optics,
             CardCategory.Clothing,
+            CardCategory.FuelingStation,
+            CardCategory.BookStore,
         ).map { it.localizedValue })
     }
 

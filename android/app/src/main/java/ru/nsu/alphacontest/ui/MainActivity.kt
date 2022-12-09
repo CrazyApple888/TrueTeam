@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), SensorListener {
     private var lastY = 0f
     private var lastZ = 0f
 
-
+    var authorized = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +36,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), SensorListener {
 
 
     override fun onSensorChanged(sensor: Int, values: FloatArray) {
+        if(!authorized) {
+            return
+        }
         if (sensor == SensorManager.SENSOR_ACCELEROMETER) {
             val curTime = System.currentTimeMillis()
             // only allow one update every 100ms.

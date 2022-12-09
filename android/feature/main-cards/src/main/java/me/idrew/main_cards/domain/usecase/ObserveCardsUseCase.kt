@@ -12,7 +12,7 @@ class ObserveCardsUseCase(
 ) {
 
     suspend operator fun invoke(location: LonLat?): Flow<List<Card>> = run {
-        getOrderedCardsUseCase(CardCategory.Company, location?.lat ?: "0", location?.lon ?: "0")
+        getOrderedCardsUseCase(CardCategory.Grocery, location?.lat ?: "0", location?.lon ?: "0")
         cardsRepository.observeCards()
     }
 }

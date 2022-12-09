@@ -15,5 +15,6 @@ class CategoryMapper {
             CardCategory.Optics ->  ChipCategory(6, category.localizedValue, category, isSelected)
             CardCategory.Pharmacy ->  ChipCategory(7, category.localizedValue, category, isSelected)
             CardCategory.Restaurant ->  ChipCategory(8, category.localizedValue, category, isSelected)
+            CardCategory.BookStore -> ChipCategory(9, category.localizedValue, category, isSelected)
         }
 }
