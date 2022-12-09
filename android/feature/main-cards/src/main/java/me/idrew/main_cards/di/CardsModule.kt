@@ -11,6 +11,7 @@ import me.idrew.main_cards.domain.usecase.GetAvailableCategoriesUseCase
 import me.idrew.main_cards.domain.usecase.GetOrderedCardsUseCase
 import me.idrew.main_cards.domain.location.LocationService
 import me.idrew.main_cards.domain.location.PermissionChecker
+import me.idrew.main_cards.domain.usecase.ObserveCardsUseCase
 import me.idrew.main_cards.presentation.mapper.CardsListItemMapper
 import me.idrew.main_cards.presentation.mapper.CategoryMapper
 import org.koin.android.ext.koin.androidContext
@@ -19,7 +20,8 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 
 private val presentationModule = module {
-    viewModel { CardsViewModel(get(), get(), get(), get(), get(), get()) }
+    viewModel { CardsViewModel(get(), get(), get(), get(), get(), get(), get()) }
+    factory { ObserveCardsUseCase(get()) }
     factory { CategoryMapper() }
     factory { GetAvailableCategoriesUseCase() }
     factory { GetOrderedCardsUseCase(get()) }

@@ -12,6 +12,7 @@ import me.idrew.main_cards.domain.location.PermissionChecker
 import me.idrew.main_cards.domain.model.LonLat
 import me.idrew.main_cards.domain.usecase.GetAvailableCategoriesUseCase
 import me.idrew.main_cards.domain.usecase.GetOrderedCardsUseCase
+import me.idrew.main_cards.domain.usecase.ObserveCardsUseCase
 import me.idrew.main_cards.presentation.mapper.CardsListItemMapper
 import me.idrew.main_cards.presentation.mapper.CategoryMapper
 import me.idrew.main_cards.presentation.model.CardsScreenUIState
@@ -23,6 +24,7 @@ import ru.nsu.alphacontest.model.CardCategory
 class CardsViewModel(
     getAvailableCategoriesUseCase: GetAvailableCategoriesUseCase,
     private val getOrderedCardsUseCase: GetOrderedCardsUseCase,
+    private val observeCardsUseCase: ObserveCardsUseCase,
     private val permissionChecker: PermissionChecker,
     private val locationService: LocationService,
     private val categoryMapper: CategoryMapper,
@@ -58,7 +60,7 @@ class CardsViewModel(
         )
 
         viewModelScope.launch {
-            getOrderedCardsUseCase(categories.first(), "0", "0").let { cards ->
+            observeCardsUseCase().collect { cards ->
                 _uiState.update {
                     it.copy(
                         cards = cards.map(listItemMapper::mapToItem),
@@ -118,6 +120,15 @@ class CardsViewModel(
         }
     }
 
+    fun onDialogDismissed() {
+        _uiState.update {
+            it.copy(
+                state = UIState.Content(),
+                errorType = null
+            )
+        }
+    }
+
     fun onCategoryChosen(id: Int) {
         if (id == -1) return
 
@@ -131,12 +142,12 @@ class CardsViewModel(
                 lon = lastKnownLocation?.lon ?: "0",
                 lat = lastKnownLocation?.lat ?: "0"
             ).let { cards ->
-                _uiState.update {
-                    it.copy(
-                        cards = cards.map(listItemMapper::mapToItem),
-                        state = UIState.Content()
-                    )
-                }
+//                _uiState.update {
+//                    it.copy(
+//                        cards = cards.map(listItemMapper::mapToItem),
+//                        state = UIState.Content()
+//                    )
+//                }
             }
         }
     }

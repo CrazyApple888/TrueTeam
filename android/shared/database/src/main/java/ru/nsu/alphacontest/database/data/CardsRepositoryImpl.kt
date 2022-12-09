@@ -1,6 +1,9 @@
 package ru.nsu.alphacontest.database.data
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import ru.nsu.alphacontest.database.data.dao.CardDao
 import ru.nsu.alphacontest.database.data.mapper.CardMapper
@@ -25,12 +28,27 @@ class CardsRepositoryImpl(
     }
 
     override suspend fun delete(cards: List<Card>) = withContext(Dispatchers.IO) {
-        cards.map(cardMapper::mapToDb).forEach { cardsDao.deleteCard(it) }
+        cards.map(cardMapper::mapToDb).forEach {
+            cardsDao.deleteCard(
+                barcodeType = it.barcodeType,
+                barcodeNumber = it.barcodeNumber
+            )
+        }
     }
 
     override suspend fun getByNumber(number: String) = withContext(Dispatchers.IO) {
         cardsDao.getAll().filter {
-                it.barcodeNumber == number
-            }.map(cardMapper::mapFromDb).first()
+            it.barcodeNumber == number
+        }.map(cardMapper::mapFromDb).first()
     }
+
+    override suspend fun saveCard(card: Card) = withContext(Dispatchers.IO) {
+        cardsDao.saveCard(cardMapper.mapToDb(card))
+    }
+
+    override fun observeCards(): Flow<List<Card>> =
+        cardsDao.observeCards().map {
+            it.map(cardMapper::mapFromDb)
+        }
+            .flowOn(Dispatchers.IO)
 }

@@ -4,25 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="?attr/actionBarSize">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingHorizontal="16dp">
+        android:orientation="vertical">
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chip_group"
+        <View
+            android:id="@+id/toolbar_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:singleSelection="true" />
+            android:layout_height="1dp"
+            android:backgroundTint="#00FFFFFF" />
+
+        <HorizontalScrollView
+            android:paddingHorizontal="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:singleSelection="true" />
+
+        </HorizontalScrollView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingHorizontal="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_card_layout" />
 
@@ -35,7 +47,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
-        android:contentDescription="@string/add_card_add_card"
+        android:contentDescription="Добавить карту"
         android:src="@drawable/ic_add" />
 
 </FrameLayout>
