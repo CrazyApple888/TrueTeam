@@ -3,20 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="220dp"
+    android:layout_height="230dp"
     android:layout_marginVertical="16dp"
-    android:backgroundTint="@color/accent"
-    app:cardCornerRadius="16dp"
-    app:strokeColor="@color/accent"
-    app:strokeWidth="0.5dp">
+    app:cardCornerRadius="32dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:background="@drawable/card_background_red"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="8dp"
+        android:layout_height="230dp"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:paddingHorizontal="16dp"
+        android:paddingHorizontal="20dp"
         android:paddingTop="4dp">
 
         <com.google.android.material.textview.MaterialTextView
@@ -34,7 +31,7 @@
             android:layout_marginTop="8dp"
             android:textColor="#FFFFFFFF"
             android:textSize="12sp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="20dp"
             tools:text="Aboba description" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
