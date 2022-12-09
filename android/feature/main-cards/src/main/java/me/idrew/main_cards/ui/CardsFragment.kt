@@ -192,9 +192,6 @@ class CardsFragment: Fragment(R.layout.fragment_cards) {
     }
 
     private fun initViews() {
-        binding.toolbarView.updateLayoutParams<LinearLayout.LayoutParams> {
-            height = resources.getStatusBarHeight()
-        }
         binding.recycler.adapter = adapter
     }
 
