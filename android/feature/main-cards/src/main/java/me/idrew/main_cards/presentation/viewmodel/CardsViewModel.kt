@@ -16,6 +16,7 @@ import me.idrew.main_cards.domain.usecase.ObserveCardsUseCase
 import me.idrew.main_cards.presentation.mapper.CardsListItemMapper
 import me.idrew.main_cards.presentation.mapper.CategoryMapper
 import me.idrew.main_cards.presentation.model.CardsScreenUIState
+import me.idrew.main_cards.presentation.model.ChipCategory
 import me.idrew.main_cards.presentation.model.ErrorType
 import me.idrew.main_cards.presentation.model.UIState
 import ru.nsu.alphacontest.SingleLiveEvent
@@ -47,9 +48,15 @@ class CardsViewModel(
     private val _openAddCardEvent = SingleLiveEvent<Unit>()
     val openAddCardEvent: LiveData<Unit> = _openAddCardEvent
 
-    private var lastKnownLocation: LonLat? = null
+    private var lastKnownLocation: LonLat? = if (permissionChecker.isLocationPermissionGranted()) {
+        locationService.getLastKnownLocation()
+    } else {
+        null
+    }
 
     private val categories: List<CardCategory> = getAvailableCategoriesUseCase()
+
+    private var selectedCardCategory: ChipCategory? = null
 
     private val _connectionErrorEvent: SingleLiveEvent<String> = SingleLiveEvent()
     val connectionErrorEvent: LiveData<String> = _connectionErrorEvent
@@ -93,9 +100,11 @@ class CardsViewModel(
 
     fun onLocationPermissionResult(permissions: Map<String, Boolean>) {
         if (permissions.containsValue(true)) {
+            lastKnownLocation = locationService.getLastKnownLocation()
             locationService.observeLocationUpdates {
                 lastKnownLocation = it
             }
+            onCategoryChosen(selectedCardCategory?.id ?: 0)
         } else {
             _uiState.update {
                 it.copy(
@@ -146,13 +155,15 @@ class CardsViewModel(
     fun onCategoryChosen(id: Int) {
         if (id == -1) return
 
+        selectedCardCategory = uiState.value.availableCategories.find { it.id == id }
+
         if (!permissionChecker.isLocationPermissionGranted()) {
             _requestLocationPermissionEvent.call()
             return
         }
         viewModelScope.launch(exceptionHandler) {
             getOrderedCardsUseCase(
-                category = uiState.value.selectedCategory?.category ?: categories.first(),
+                category = selectedCardCategory?.category ?: categories.first(),
                 lon = lastKnownLocation?.lon ?: "0",
                 lat = lastKnownLocation?.lat ?: "0"
             )

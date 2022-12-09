@@ -14,7 +14,7 @@ class CardsCommand(
     suspend fun loadCards(category: CardCategory, lon: String, lat: String): List<Card> {
         val response = run {
             cardsService.getOrderedCards(
-                category = category.stringValue,
+                category = category.localizedValue,
                 lon = lon,
                 lat = lat
             )
