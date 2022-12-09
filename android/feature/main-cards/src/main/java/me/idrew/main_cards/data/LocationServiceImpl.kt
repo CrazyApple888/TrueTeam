@@ -12,13 +12,23 @@ class LocationServiceImpl(
     @SuppressLint("MissingPermission")
     override fun observeLocationUpdates(locationConsumer: (LonLat) -> Unit) {
         locationManager.requestLocationUpdates(
-            LocationManager.GPS_PROVIDER, 1000L, 50F
+            LocationManager.GPS_PROVIDER, 100L, 0F
         ) { location ->
             locationConsumer(
                 LonLat(
                     location.longitude.toString(),
                     location.latitude.toString()
                 )
+            )
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    override fun getLastKnownLocation(): LonLat {
+        return locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).let {
+            LonLat(
+                lon = it?.longitude?.toString() ?: "0",
+                lat = it?.latitude?.toString() ?: "0"
             )
         }
     }
