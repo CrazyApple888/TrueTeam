@@ -6,6 +6,7 @@ import android.graphics.Color
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
+import ru.nsu.alphacontest.model.BarcodeType
 
 
 class GenerateCodeImageByNumberUseCase {
@@ -13,8 +14,8 @@ class GenerateCodeImageByNumberUseCase {
         var bitmap: Bitmap? = null
         val multiFormatWriter = MultiFormatWriter()
         try {
-            val width = 200
-            val height = 50
+            val width = if(barcodeFormat == BarcodeFormat.QR_CODE) 200 else 300
+            val height = if(barcodeFormat == BarcodeFormat.QR_CODE) 200 else 100
             val bitMatrix =
                 multiFormatWriter.encode(number, barcodeFormat, width, height)
             bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)

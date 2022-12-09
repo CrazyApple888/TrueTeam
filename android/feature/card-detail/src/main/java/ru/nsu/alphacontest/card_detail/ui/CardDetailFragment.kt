@@ -23,6 +23,7 @@ import ru.nsu.alphacontest.card_detail.presentation.ErrorType
 import ru.nsu.alphacontest.design.dialogs.InternalServerErrorDialog
 import ru.nsu.alphacontest.design.dialogs.LoadingDialog
 import ru.nsu.alphacontest.design.dialogs.NoConnectivityDialog
+import ru.nsu.alphacontest.model.BarcodeType
 
 class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
     private val binding by viewBinding(FragmentCardDetailBinding::bind)
@@ -78,9 +79,11 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
                     if(state.codeImage == null) {
                         numberEditText.setText(state.code)
                         numberLayout.isVisible = true
+                        barcode.isVisible = false
                     } else {
                         barcode.setImageBitmap(state.codeImage)
                         barcode.isVisible = true
+                        numberLayout.isVisible = false
                     }
                     nameEditText.setText(state.card?.name)
                     categoryEditText.setText(state.card?.category?.stringValue)
