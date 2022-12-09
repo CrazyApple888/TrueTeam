@@ -86,7 +86,7 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
                         numberLayout.isVisible = false
                     }
                     nameEditText.setText(state.card?.name)
-                    categoryEditText.setText(state.card?.category?.stringValue)
+                    categoryEditText.setText(state.card?.category?.localizedValue)
                 }
             }
             ContentState.Exit -> {

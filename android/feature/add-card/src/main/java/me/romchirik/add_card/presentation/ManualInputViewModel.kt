@@ -37,7 +37,7 @@ class ManualInputViewModel(
                 TrueCard(
                     name = name,
                     number = number,
-                    category = CardCategory.forLocalizedName(category),
+                    category = CardCategory.forName(category),
                     barcodeType = barcodeType ?: BarcodeType.NoBarcode(),
                 )
             )

@@ -11,7 +11,7 @@ class CardMapper {
     fun mapFromDb(card: CardModel): Card =
         Card(
             name = card.name,
-            category = CardCategory.forName(card.name),
+            category = CardCategory.forName(card.category),
             barcode = Barcode(
                 type = BarcodeType.forName(card.barcodeType),
                 number = card.barcodeNumber

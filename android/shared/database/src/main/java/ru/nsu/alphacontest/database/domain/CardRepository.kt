@@ -15,5 +15,7 @@ interface CardRepository {
 
     suspend fun saveCard(card: Card)
 
+    suspend fun isEmpty(): Boolean
+
     fun observeCards(): Flow<List<Card>>
 }
