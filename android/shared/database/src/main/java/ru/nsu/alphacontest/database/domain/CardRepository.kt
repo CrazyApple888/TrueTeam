@@ -1,5 +1,6 @@
 package ru.nsu.alphacontest.database.domain
 
+import kotlinx.coroutines.flow.Flow
 import ru.nsu.alphacontest.model.Card
 
 interface CardRepository {
@@ -11,4 +12,8 @@ interface CardRepository {
     suspend fun delete(cards: List<Card>)
 
     suspend fun getByNumber(number: String): Card
+
+    suspend fun saveCard(card: Card)
+
+    fun observeCards(): Flow<List<Card>>
 }

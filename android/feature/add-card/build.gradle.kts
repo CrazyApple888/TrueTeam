@@ -27,4 +27,5 @@ dependencies {
 
     implementation(project(Modules.DESIGN))
     implementation(project(Modules.BASE))
+    implementation(project(Modules.DATABASE))
 }

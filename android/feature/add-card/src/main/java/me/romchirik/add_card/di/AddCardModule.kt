@@ -22,7 +22,8 @@ val InputViewModel = module {
 val DomainModule = module {
     factory {
         AddCardUseCase(
-            datasource = get()
+            datasource = get(),
+            cardsRepository = get()
         )
     }
 }

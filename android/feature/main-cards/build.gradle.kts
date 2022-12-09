@@ -21,4 +21,5 @@ dependencies {
     implementation(project(Modules.BASE))
     implementation(project(Modules.DATABASE))
     implementation(project(Modules.ADD_CARD))
+    implementation(project(Modules.NETWORK))
 }
