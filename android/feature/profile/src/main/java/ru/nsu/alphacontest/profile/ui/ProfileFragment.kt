@@ -27,8 +27,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private val viewModel by viewModel<ProfileViewModel>()
 
-    private lateinit var loadingDialog: DialogFragment
-
     private lateinit var connectivityErrorFragment: DialogFragment
 
     private lateinit var internalServerErrorDialog: DialogFragment
@@ -36,7 +34,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loadingDialog = LoadingDialog()
         connectivityErrorFragment = NoConnectivityDialog()
         internalServerErrorDialog = InternalServerErrorDialog()
         setupListeners()
@@ -59,7 +56,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         when (state.contentState) {
             is ContentState.Error -> {
-                loadingDialog.dismiss()
                 when (state.contentState.type) {
                     ErrorType.InternalServerError -> {
                         showInternalServerErrorDialog()
@@ -69,11 +65,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     }
                 }
             }
-            ContentState.Loading -> {
-                showLoadingDialog()
-            }
             ContentState.Content -> {
-                loadingDialog.dismiss()
                 binding.emailEditText.setText(state.email)
                 binding.nameEditText.setText(state.name)
             }
@@ -87,11 +79,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 )
             }
         }
-    }
-
-    private fun showLoadingDialog() {
-        if (!loadingDialog.isVisible)
-            loadingDialog.show(childFragmentManager, "Loading dialog")
     }
 
     private fun showConnectivityErrorDialog() {
