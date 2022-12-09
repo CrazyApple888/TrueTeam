@@ -12,13 +12,13 @@ class CardsCommand(
 ) {
 
     suspend fun loadCards(category: CardCategory, lon: String, lat: String): List<Card> {
-        val response = runCatching {
+        val response = run {
             cardsService.getOrderedCards(
                 category = category.stringValue,
                 lon = lon,
                 lat = lat
             )
-        }.getOrNull() ?: return cardsRepository.getAll()
+        }
 
         val resultCards = mutableListOf<Card>().apply {
             addAll(response.nearestCards.map(cardsWebMapper::mapToDomain))

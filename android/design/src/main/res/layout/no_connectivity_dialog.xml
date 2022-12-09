@@ -9,12 +9,13 @@
         android:background="@drawable/dialog_bg">
 
         <com.google.android.material.textview.MaterialTextView
-            android:gravity="center"
-            android:layout_gravity="center|center_horizontal"
+            android:id="@+id/message"
             style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/no_connectivity_title_dialog"/>
+            android:layout_gravity="center|center_horizontal"
+            android:gravity="center"
+            android:text="@string/no_connectivity_title_dialog" />
 
     </FrameLayout>
 
