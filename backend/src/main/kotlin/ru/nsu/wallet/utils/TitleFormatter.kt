@@ -8,5 +8,5 @@ object TitleFormatter {
     fun formatName(name: String) =
         name.lowercase()
             .trim()
-            .replace('ё', 'e', true)
+            .replace('ё', 'е', true)
 }

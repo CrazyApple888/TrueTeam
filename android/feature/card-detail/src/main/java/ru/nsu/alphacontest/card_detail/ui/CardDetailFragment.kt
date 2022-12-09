@@ -23,6 +23,7 @@ import ru.nsu.alphacontest.card_detail.presentation.ErrorType
 import ru.nsu.alphacontest.design.dialogs.InternalServerErrorDialog
 import ru.nsu.alphacontest.design.dialogs.LoadingDialog
 import ru.nsu.alphacontest.design.dialogs.NoConnectivityDialog
+import ru.nsu.alphacontest.model.BarcodeType
 
 class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
     private val binding by viewBinding(FragmentCardDetailBinding::bind)
@@ -35,8 +36,6 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
         }
     )
 
-    private lateinit var loadingDialog: DialogFragment
-
     private lateinit var connectivityErrorFragment: DialogFragment
 
     private lateinit var internalServerErrorDialog: DialogFragment
@@ -44,7 +43,6 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loadingDialog = LoadingDialog()
         connectivityErrorFragment = NoConnectivityDialog()
         internalServerErrorDialog = InternalServerErrorDialog()
         setupListeners()
@@ -67,7 +65,6 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
 
         when (state.contentState) {
             is ContentState.Error -> {
-                loadingDialog.dismiss()
                 when (state.contentState.type) {
                     ErrorType.InternalServerError -> {
                         showInternalServerErrorDialog()
@@ -77,18 +74,16 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
                     }
                 }
             }
-            ContentState.Loading -> {
-                showLoadingDialog()
-            }
             ContentState.Content -> {
-                loadingDialog.dismiss()
                 with(binding) {
                     if(state.codeImage == null) {
                         numberEditText.setText(state.code)
                         numberLayout.isVisible = true
+                        barcode.isVisible = false
                     } else {
                         barcode.setImageBitmap(state.codeImage)
                         barcode.isVisible = true
+                        numberLayout.isVisible = false
                     }
                     nameEditText.setText(state.card?.name)
                     categoryEditText.setText(state.card?.category?.stringValue)
@@ -98,11 +93,6 @@ class CardDetailFragment : Fragment(R.layout.fragment_card_detail) {
                 findNavController().popBackStack()
             }
         }
-    }
-
-    private fun showLoadingDialog() {
-        if (!loadingDialog.isVisible)
-            loadingDialog.show(childFragmentManager, "Loading dialog")
     }
 
     private fun showConnectivityErrorDialog() {

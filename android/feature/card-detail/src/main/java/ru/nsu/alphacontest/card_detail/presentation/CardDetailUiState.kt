@@ -7,12 +7,11 @@ data class CardDetailUiState(
     val card: Card? = null,
     val codeImage: Bitmap? = null,
     val code: String? = null,
-    val contentState: ContentState = ContentState.Loading
+    val contentState: ContentState = ContentState.Content
 )
 
 sealed interface ContentState {
     object Content: ContentState
-    object Loading: ContentState
     data class Error(
         val type: ErrorType,
     ): ContentState
