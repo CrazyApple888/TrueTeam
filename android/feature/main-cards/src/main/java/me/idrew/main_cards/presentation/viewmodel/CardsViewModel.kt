@@ -81,7 +81,7 @@ class CardsViewModel(
         )
 
         viewModelScope.launch {
-            observeCardsUseCase().collect { cards ->
+            observeCardsUseCase(lastKnownLocation).collect { cards ->
                 _uiState.update {
                     it.copy(
                         cards = cards.map(listItemMapper::mapToItem),
