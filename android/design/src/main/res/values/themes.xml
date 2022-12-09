@@ -10,7 +10,7 @@
 
         <item name="materialButtonStyle">@style/AlfaButton.Elevated</item>
         <item name="textInputStyle">@style/AlfaTextField</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@color/accent</item>
     </style>
 
     <style name="Theme.AlphaContest" parent="Base.Theme.AlphaContest"/>
