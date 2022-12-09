@@ -28,6 +28,7 @@ import me.idrew.main_cards.presentation.model.ErrorType
 import me.idrew.main_cards.presentation.model.UIState
 import me.idrew.main_cards.presentation.viewmodel.CardsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import ru.nsu.alphacontest.design.dialogs.CustomMessageDialog
 import ru.nsu.alphacontest.main_cards.R
 import ru.nsu.alphacontest.main_cards.databinding.FragmentCardsBinding
 
@@ -53,6 +54,10 @@ class CardsFragment: Fragment(R.layout.fragment_cards) {
     private var requestLocationLauncher: ActivityResultLauncher<Array<String>>? = null
 
     private var requestCameraLauncher: ActivityResultLauncher<String>? = null
+
+    private val connectionErrorDialog: CustomMessageDialog by lazy {
+        CustomMessageDialog()
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -111,6 +116,12 @@ class CardsFragment: Fragment(R.layout.fragment_cards) {
         viewModel.requestCameraPermissionEvent.observe(viewLifecycleOwner) {
             requestCameraLauncher?.launch(Manifest.permission.CAMERA)
         }
+
+        viewModel.connectionErrorEvent.observe(viewLifecycleOwner) {
+            connectionErrorDialog.apply {
+                message = it
+            }.show(childFragmentManager, "connection dialog")
+        }
     }
 
     private fun initChips() {
@@ -130,7 +141,7 @@ class CardsFragment: Fragment(R.layout.fragment_cards) {
         adapter.items = uiState.cards
     }
 
-    private fun showDialog(message: String) {
+    private fun showPermissionDialog(message: String) {
         val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         alertDialogBuilder.setTitle("Доступ к геолокации")
         alertDialogBuilder
@@ -173,7 +184,7 @@ class CardsFragment: Fragment(R.layout.fragment_cards) {
 
     private fun bindPermissionError(toastMessage: String, message: String, permission: String) {
         if (!shouldShowRequestPermissionRationale(permission)) {
-            showDialog(message)
+            showPermissionDialog(message)
         } else {
             Toast.makeText(requireContext(), toastMessage, Toast.LENGTH_SHORT).show()
         }

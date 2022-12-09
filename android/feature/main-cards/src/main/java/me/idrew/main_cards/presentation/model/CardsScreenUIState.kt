@@ -11,13 +11,13 @@ data class CardsScreenUIState(
 )
 
 sealed interface ErrorType {
-    class Camera: ErrorType
-    class Location: ErrorType
+    class Camera : ErrorType
+    class Location : ErrorType
 }
 
 sealed interface UIState {
     class Initial : UIState
     class Error : UIState
     class Content : UIState
-    class ChipInit: UIState
+    class ChipInit : UIState
 }
