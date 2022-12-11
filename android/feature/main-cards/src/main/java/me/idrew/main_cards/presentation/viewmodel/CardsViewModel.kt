@@ -78,7 +78,7 @@ class CardsViewModel(
             }, state = UIState.ChipInit()
         )
 
-        viewModelScope.launch {
+        viewModelScope.launch(exceptionHandler) {
             observeCardsUseCase(lastKnownLocation).collect { cards ->
                 _uiState.update {
                     it.copy(
