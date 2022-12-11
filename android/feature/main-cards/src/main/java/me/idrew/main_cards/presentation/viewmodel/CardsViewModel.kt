@@ -82,7 +82,7 @@ class CardsViewModel(
             observeCardsUseCase(lastKnownLocation).collect { cards ->
                 _uiState.update {
                     it.copy(
-                        cards = cards.map(listItemMapper::mapToItem), state = UIState.Content()
+                        cards = cards.map(listItemMapper::mapToItem).distinctBy { card -> card.number }, state = UIState.Content()
                     )
                 }
             }
